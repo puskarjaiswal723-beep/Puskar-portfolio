@@ -29,19 +29,10 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-.leetcode-heatmap-image {
-    display: block;
-    width: 100%;
-    max-width: 900px;
-    height: auto;
-    margin: 0 auto;
-    border-radius: 12px;
-}
 body {
 
     margin: 0;
@@ -55,11 +46,9 @@ body {
     overflow-x: hidden;
 }
 
-
 a {
     -webkit-tap-highlight-color: transparent;
 }
-
 
 ::selection {
 
@@ -232,7 +221,7 @@ a {
 
     display: flex;
 
-    gap: 28px;
+    gap: 24px;
 }
 
 
@@ -242,7 +231,7 @@ a {
 
     text-decoration: none;
 
-    font-size: 13px;
+    font-size: 12px;
 
     transition: .25s;
 }
@@ -251,6 +240,65 @@ a {
 .navbar nav a:hover {
 
     color: var(--green);
+}
+
+
+/* ======================================================
+   NAV ACTIONS
+   ====================================================== */
+
+.nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.cv-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    color: var(--green);
+
+    background:
+        rgba(0,245,106,.04);
+
+    border:
+        1px solid rgba(0,245,106,.45);
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: .25s ease;
+}
+
+
+.cv-btn:hover {
+
+    background: var(--green);
+
+    color: #031008;
+
+    box-shadow:
+        0 0 25px
+        rgba(0,245,106,.18);
+
+    transform:
+        translateY(-2px);
 }
 
 
@@ -512,7 +560,7 @@ a {
 .portrait-card {
 
     width:
-        min(420px, 90%);
+        min(420px,90%);
 
     height: 540px;
 
@@ -606,8 +654,7 @@ a {
 }
 
 
-.portrait-card:hover
-.profile-image {
+.portrait-card:hover .profile-image {
 
     transform:
         scale(1.04);
@@ -914,7 +961,7 @@ p:not(.eyebrow) {
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
     gap: 14px;
 
@@ -1182,7 +1229,7 @@ p:not(.eyebrow) {
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
     gap: 16px;
 
@@ -1335,21 +1382,17 @@ p:not(.eyebrow) {
     height: 40px;
 }
 
-
 .data-art div:nth-child(2) {
     height: 75px;
 }
-
 
 .data-art div:nth-child(3) {
     height: 115px;
 }
 
-
 .data-art div:nth-child(4) {
     height: 90px;
 }
-
 
 .data-art div:nth-child(5) {
     height: 145px;
@@ -1484,6 +1527,18 @@ p:not(.eyebrow) {
    EDUCATION
    ====================================================== */
 
+.education-grid {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-top: 50px;
+}
+
+
 .education-card {
 
     display: flex;
@@ -1495,7 +1550,7 @@ p:not(.eyebrow) {
 
     gap: 40px;
 
-    padding: 55px;
+    padding: 45px;
 
     border:
         1px solid var(--line);
@@ -1506,23 +1561,59 @@ p:not(.eyebrow) {
             rgba(0,245,106,.035),
             rgba(255,255,255,.01)
         );
+
+    transition: .3s ease;
 }
 
 
-.education-card h2 {
+.education-card:hover {
 
-    max-width: 800px;
+    border-color:
+        rgba(0,245,106,.28);
 
-    font-size:
-        clamp(35px,4vw,55px);
+    transform:
+        translateY(-3px);
 }
 
 
-.education-card >
-div:first-child >
-p:last-child {
+.education-number {
+
+    color: #65706a;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.education-info h3 {
+
+    margin:
+        15px 0 7px;
+
+    font-size: 25px;
+}
+
+
+.education-info h4 {
+
+    margin: 0 0 10px;
+
+    color: var(--green);
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+.education-info p {
 
     color: #818b86;
+
+    margin: 0;
+
+    font-size: 13px;
 }
 
 
@@ -1557,114 +1648,6 @@ p:last-child {
 
 
 /* ======================================================
-   CONTACT
-   ====================================================== */
-
-.contact {
-
-    border-top:
-        1px solid var(--line);
-
-    background:
-        radial-gradient(
-            circle at 50% 30%,
-            rgba(0,245,106,.055),
-            transparent 45%
-        );
-}
-
-
-.contact-inner {
-
-    max-width: 900px;
-}
-
-
-.contact-inner >
-p:not(.eyebrow) {
-
-    max-width: 560px;
-
-    color: #858f8a;
-
-    line-height: 1.8;
-
-    font-size: 14px;
-}
-
-
-.contact-actions {
-
-    display: flex;
-
-    gap: 12px;
-
-    margin-top: 30px;
-}
-
-
-/* ======================================================
-   FOOTER
-   ====================================================== */
-
-footer {
-
-    padding: 28px 7.5%;
-
-    border-top:
-        1px solid var(--line);
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    color: #59625e;
-
-    font-size: 10px;
-
-    letter-spacing: .5px;
-}
-
-
-/* ======================================================
-   REVEAL ANIMATION
-   ====================================================== */
-
-.reveal {
-
-    animation:
-        revealUp .9s ease both;
-}
-
-
-.delay-1 {
-
-    animation-delay: .15s;
-}
-
-
-@keyframes revealUp {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(25px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-/* ======================================================
    CERTIFICATES
    ====================================================== */
 
@@ -1673,7 +1656,7 @@ footer {
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
     gap: 16px;
 
@@ -1820,7 +1803,7 @@ footer {
 
 
 /* ======================================================
-   LEETCODE HEATMAP
+   LEETCODE
    ====================================================== */
 
 .leetcode-card {
@@ -1841,8 +1824,6 @@ footer {
     overflow-x: auto;
 }
 
-
-/* TOP */
 
 .leetcode-top {
 
@@ -1886,15 +1867,15 @@ footer {
 }
 
 
-/* HEATMAP WRAPPER */
+/* ======================================================
+   HEATMAP
+   ====================================================== */
 
 .heatmap-wrapper {
 
     min-width: 780px;
 }
 
-
-/* CONTENT */
 
 .heatmap-content {
 
@@ -1905,19 +1886,18 @@ footer {
 }
 
 
-/* DAY LABELS */
-
 .heatmap-days {
 
     width: 35px;
 
-    display: flex;
+    display: grid;
 
-    flex-direction: column;
+    grid-template-rows:
+        repeat(7,13px);
 
     gap: 5px;
 
-    padding-top: 1px;
+    flex-shrink: 0;
 }
 
 
@@ -1944,20 +1924,19 @@ footer {
     grid-auto-flow: column;
 
     grid-template-rows:
-        repeat(7, 13px);
+        repeat(7,13px);
 
-    grid-auto-columns: 13px;
+    grid-auto-columns:
+        13px;
 
     gap: 5px;
-
-    /* IMPORTANT */
 
     width: max-content;
 }
 
 
 /* ======================================================
-   HEATMAP CELLS
+   HEATMAP CELL
    ====================================================== */
 
 .heat-cell {
@@ -1972,74 +1951,67 @@ footer {
 
     border-radius: 3px;
 
+    cursor: pointer;
+
     transition:
         transform .15s ease,
         box-shadow .15s ease;
-
-    cursor: pointer;
 }
 
 
 .heat-cell:hover {
 
     transform:
-        scale(1.35);
+        scale(1.4);
 
     box-shadow:
-        0 0 8px
-        rgba(0,255,102,.5);
+        0 0 10px
+        rgba(0,255,102,.7);
+
+    position: relative;
+
+    z-index: 10;
 }
 
 
 /* ======================================================
-   LEVEL 0
+   HEATMAP LEVELS
    ====================================================== */
 
-.heat-cell.level-0 {
+.heat-cell.level-0,
+.heatmap-legend .level-0 {
 
     background:
         #161b22;
 }
 
 
-/* ======================================================
-   LEVEL 1
-   ====================================================== */
-
-.heat-cell.level-1 {
+.heat-cell.level-1,
+.heatmap-legend .level-1 {
 
     background:
         #0e4429;
 }
 
 
-/* ======================================================
-   LEVEL 2
-   ====================================================== */
-
-.heat-cell.level-2 {
+.heat-cell.level-2,
+.heatmap-legend .level-2 {
 
     background:
         #006d32;
 }
 
 
-/* ======================================================
-   LEVEL 3
-   ====================================================== */
-
-.heat-cell.level-3 {
+.heat-cell.level-3,
+.heatmap-legend .level-3 {
 
     background:
         #26a641;
 }
 
 
-/* ======================================================
-   LEVEL 4
-   ====================================================== */
-
-.heat-cell.level-4 {
+.heat-cell.level-4,
+.heatmap-legend .level-4 {
 
     background:
         #39d353;
@@ -2051,7 +2023,7 @@ footer {
 
 
 /* ======================================================
-   BOTTOM
+   HEATMAP BOTTOM
    ====================================================== */
 
 .heatmap-bottom {
@@ -2059,9 +2031,11 @@ footer {
     display: flex;
 
     justify-content:
-        space-between;
+        flex-end;
 
     align-items: center;
+
+    gap: 8px;
 
     margin-top: 22px;
 
@@ -2070,10 +2044,6 @@ footer {
     opacity: .7;
 }
 
-
-/* ======================================================
-   LEGEND
-   ====================================================== */
 
 .heatmap-legend {
 
@@ -2097,50 +2067,307 @@ footer {
 }
 
 
-.heatmap-legend .level-0 {
+/* ======================================================
+   TOOLTIP
+   ====================================================== */
+
+.heat-tooltip {
+
+    position: fixed;
+
+    z-index: 99999;
+
+    padding: 8px 10px;
 
     background:
-        #161b22;
-}
+        #111;
 
+    border:
+        1px solid
+        rgba(0,245,106,.4);
 
-.heatmap-legend .level-1 {
+    color:
+        #eaffef;
 
-    background:
-        #0e4429;
-}
+    font-size: 10px;
 
+    border-radius: 4px;
 
-.heatmap-legend .level-2 {
+    pointer-events: none;
 
-    background:
-        #006d32;
-}
+    white-space: nowrap;
 
+    opacity: 0;
 
-.heatmap-legend .level-3 {
-
-    background:
-        #26a641;
-}
-
-
-.heatmap-legend .level-4 {
-
-    background:
-        #39d353;
+    transition: opacity .15s ease;
 }
 
 
 /* ======================================================
-   ERROR
+   CONTACT
    ====================================================== */
 
-.leetcode-error {
+.contact {
 
-    padding: 20px;
+    border-top:
+        1px solid var(--line);
 
-    color: #ff6b6b;
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0,245,106,.055),
+            transparent 45%
+        );
+}
+
+
+.contact-inner {
+
+    max-width: 900px;
+}
+
+
+.contact-inner >
+p:not(.eyebrow) {
+
+    max-width: 560px;
+
+    color: #858f8a;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+.contact-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+
+footer {
+
+    padding: 28px 7.5%;
+
+    border-top:
+        1px solid var(--line);
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    color: #59625e;
+
+    font-size: 10px;
+
+    letter-spacing: .5px;
+}
+
+
+/* ======================================================
+   REVEAL ANIMATION
+   ====================================================== */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.delay-1 {
+
+    transition-delay: .15s;
+}
+
+
+/* ======================================================
+   CERTIFICATE MODAL
+   ====================================================== */
+
+.certificate-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0,0,0,.88);
+
+    backdrop-filter:
+        blur(10px);
+
+    z-index: 9999;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+
+    padding: 30px;
+}
+
+
+.certificate-modal.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.certificate-modal-content {
+
+    position: relative;
+
+    max-width: 1000px;
+
+    max-height: 90vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    animation:
+        certificateZoom .3s ease;
+}
+
+
+.certificate-modal-content img {
+
+    display: block;
+
+    max-width: 90vw;
+
+    max-height: 85vh;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border:
+        1px solid
+        rgba(0,255,102,.35);
+
+    box-shadow:
+        0 0 30px
+        rgba(0,255,102,.15),
+
+        0 30px 100px
+        rgba(0,0,0,.7);
+}
+
+
+.certificate-close {
+
+    position: absolute;
+
+    top: -45px;
+
+    right: -45px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid
+        rgba(0,255,102,.4);
+
+    background:
+        rgba(7,9,9,.9);
+
+    color:
+        #00ff66;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: .25s ease;
+
+    z-index: 10;
+}
+
+
+.certificate-close:hover {
+
+    background:
+        #00ff66;
+
+    color:
+        #031008;
+
+    box-shadow:
+        0 0 20px
+        rgba(0,255,106,.4);
+
+    transform:
+        rotate(90deg);
+}
+
+
+@keyframes certificateZoom {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.9);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
 }
 
 
@@ -2148,27 +2375,35 @@ footer {
    RESPONSIVE
    ====================================================== */
 
+@media (max-width: 1200px) {
+
+    .navbar nav {
+        gap: 14px;
+    }
+
+    .navbar nav a {
+        font-size: 11px;
+    }
+}
+
+
 @media (max-width: 1050px) {
 
     .navbar nav {
-
-        gap: 17px;
+        display: none;
     }
 
     .feature-grid {
-
         grid-template-columns:
             repeat(2,1fr);
     }
 
     .achievement-grid {
-
         grid-template-columns:
             repeat(2,1fr);
     }
 
     .skill-layout {
-
         gap: 50px;
     }
 }
@@ -2177,13 +2412,7 @@ footer {
 @media (max-width: 900px) {
 
     .navbar {
-
         padding: 0 5%;
-    }
-
-    .navbar nav {
-
-        display: none;
     }
 
     .hero {
@@ -2200,7 +2429,6 @@ footer {
     }
 
     .hero-copy {
-
         text-align: center;
     }
 
@@ -2251,12 +2479,6 @@ footer {
 
         gap: 20px;
     }
-
-    .project-card.large {
-
-        grid-column:
-            span 2;
-    }
 }
 
 
@@ -2264,24 +2486,20 @@ footer {
 
     .certificate-grid {
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         max-width: 500px;
     }
 
     .certificate-image {
-
         height: 200px;
     }
 
     .leetcode-card {
-
         padding: 20px;
     }
 
     .heatmap-wrapper {
-
         min-width: 780px;
     }
 }
@@ -2290,25 +2508,29 @@ footer {
 @media (max-width: 650px) {
 
     .section-pad {
-
         padding: 75px 6%;
     }
 
     .navbar {
-
         height: 62px;
     }
 
     .brand {
-
         font-size: 15px;
     }
 
+    .nav-actions {
+        gap: 5px;
+    }
+
+    .cv-btn {
+        padding: 8px 9px;
+        font-size: 10px;
+    }
+
     .nav-cta {
-
-        padding: 9px 12px;
-
-        font-size: 11px;
+        padding: 9px 10px;
+        font-size: 10px;
     }
 
     .hero {
@@ -2325,7 +2547,6 @@ footer {
     }
 
     .hero-text {
-
         font-size: 14px;
     }
 
@@ -2342,12 +2563,10 @@ footer {
     }
 
     .mini-stats b {
-
         font-size: 16px;
     }
 
     .mini-stats span {
-
         font-size: 8px;
     }
 
@@ -2364,17 +2583,14 @@ footer {
     }
 
     .chip-top {
-
         right: -8px;
     }
 
     .chip-mid {
-
         left: -8px;
     }
 
     .chip-bottom {
-
         right: -8px;
     }
 
@@ -2419,7 +2635,6 @@ footer {
     }
 
     .project-art {
-
         min-height: 230px;
     }
 
@@ -2459,6 +2674,24 @@ footer {
 
         gap: 20px;
     }
+
+    .certificate-modal {
+        padding: 15px;
+    }
+
+    .certificate-modal-content img {
+
+        max-width: 95vw;
+
+        max-height: 80vh;
+    }
+
+    .certificate-close {
+
+        top: -45px;
+
+        right: 0;
+    }
 }
 
 
@@ -2493,207 +2726,10 @@ footer {
 /* ======================================================
    REDUCED MOTION
    ====================================================== */
-/* =====================================================
-   CERTIFICATE MODAL
-   ===================================================== */
 
-.certificate-modal {
-    position: fixed;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(0, 0, 0, 0.88);
-
-    backdrop-filter: blur(10px);
-
-    z-index: 9999;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
-
-    padding: 30px;
-}
-
-
-/* SHOW MODAL */
-
-.certificate-modal.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-/* MODAL CONTENT */
-
-.certificate-modal-content {
-    position: relative;
-
-    max-width: 1000px;
-    max-height: 90vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    animation: certificateZoom 0.3s ease;
-}
-
-
-/* CERTIFICATE IMAGE */
-
-.certificate-modal-content img {
-    display: block;
-
-    max-width: 90vw;
-    max-height: 85vh;
-
-    width: auto;
-    height: auto;
-
-    object-fit: contain;
-
-    border: 1px solid rgba(0, 255, 102, 0.35);
-
-    box-shadow:
-        0 0 30px rgba(0, 255, 102, 0.15),
-        0 30px 100px rgba(0, 0, 0, 0.7);
-}
-
-
-/* CLOSE BUTTON */
-
-.certificate-close {
-    position: absolute;
-
-    top: -45px;
-    right: -45px;
-
-    width: 38px;
-    height: 38px;
-
-    border: 1px solid rgba(0, 255, 102, 0.4);
-
-    background: rgba(7, 9, 9, 0.9);
-
-    color: #00ff66;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: 0.25s ease;
-
-    z-index: 10;
-}
-
-
-.certificate-close:hover {
-    background: #00ff66;
-    color: #031008;
-
-    box-shadow:
-        0 0 20px rgba(0, 255, 102, 0.4);
-
-    transform: rotate(90deg);
-}
-
-
-/* ANIMATION */
-
-@keyframes certificateZoom {
-
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-}
-
-
-/* MOBILE */
-
-@media (max-width: 650px) {
-
-    .certificate-modal {
-        padding: 15px;
-    }
-
-    .certificate-modal-content img {
-        max-width: 95vw;
-        max-height: 80vh;
-    }
-
-    .certificate-close {
-        top: -45px;
-        right: 0;
-    }
-
-}/* =========================
-   NAV ACTIONS
-   ========================= */
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* CV BUTTON */
-
-.cv-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  padding: 10px 15px;
-
-  color: var(--green);
-  background: rgba(0, 245, 106, 0.04);
-
-  border: 1px solid rgba(0, 245, 106, 0.45);
-
-  text-decoration: none;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  transition: 0.25s ease;
-}
-
-.cv-btn:hover {
-  background: var(--green);
-  color: #031008;
-
-  box-shadow:
-    0 0 25px rgba(0, 245, 106, 0.18);
-
-  transform: translateY(-2px);
-}
-
-.cv-btn span {
-  font-size: 14px;
-}
 @media (prefers-reduced-motion: reduce) {
 
     html {
-
         scroll-behavior: auto;
     }
 
