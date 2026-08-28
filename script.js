@@ -13,6 +13,8 @@ const LEETCODE_USERNAME = "Puskar_jaiswal_723";
 const LEETCODE_API =
     `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/calendar`;
 
+const LEETCODE_SOLVED_API =
+    `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`;
 
 /* ======================================================
    CURSOR GLOW
@@ -1078,23 +1080,20 @@ function moveHeatmapTooltip(
 /* ======================================================
    LOAD LEETCODE SOLVED PROGRESS
 ====================================================== */
+/* ======================================================
+   LOAD LEETCODE SOLVED PROGRESS
+====================================================== */
 
 async function loadLeetCodeSolvedProgress() {
 
     const solvedCount =
-        document.getElementById(
-            "leetcodeSolvedCount"
-        );
+        document.getElementById("leetcodeSolvedCount");
 
     const totalQuestions =
-        document.getElementById(
-            "leetcodeTotalQuestions"
-        );
+        document.getElementById("leetcodeTotalQuestions");
 
     const progressCircle =
-        document.getElementById(
-            "leetcodeProgressCircle"
-        );
+        document.getElementById("leetcodeProgressCircle");
 
 
     if (
@@ -1108,14 +1107,13 @@ async function loadLeetCodeSolvedProgress() {
 
     try {
 
-        const response =
-            await fetch(
-                LEETCODE_SOLVED_API,
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
-            );
+        const response = await fetch(
+            LEETCODE_SOLVED_API,
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        );
 
 
         if (!response.ok) {
@@ -1127,9 +1125,7 @@ async function loadLeetCodeSolvedProgress() {
         }
 
 
-        const data =
-            await response.json();
-
+        const data = await response.json();
 
         console.log(
             "LeetCode solved response:",
@@ -1138,32 +1134,34 @@ async function loadLeetCodeSolvedProgress() {
 
 
         /*
-           The API normally returns
-           total solved questions and
-           difficulty-wise solved counts.
+            Alfa LeetCode API /solved endpoint
+            returns the user's solved-question
+            statistics.
         */
 
         const solved =
             Number(
                 data.solvedProblem ||
-                data.solved ||
                 data.totalSolved ||
-                data.totalSolvedQuestions ||
+                data.solved ||
                 0
             );
 
 
         /*
-           Current approximate total number
-           of LeetCode problems.
+            Total number of available LeetCode
+            questions.
 
-           This can be updated later without
-           touching the heatmap.
+            Change this number whenever you want
+            to update the denominator.
         */
 
-        const total =
-            3000;
+        const total = 3000;
 
+
+        /*
+            Display solved questions.
+        */
 
         solvedCount.textContent =
             solved.toLocaleString();
@@ -1174,7 +1172,7 @@ async function loadLeetCodeSolvedProgress() {
 
 
         /*
-           Calculate progress percentage.
+            Calculate percentage.
         */
 
         const percentage =
@@ -1185,20 +1183,25 @@ async function loadLeetCodeSolvedProgress() {
 
 
         /*
-           Circle circumference:
-           2 × π × 50 = 314.16
+            Circle circumference:
+            2 × π × 50
         */
 
         const circumference =
-            314.16;
+            2 * Math.PI * 50;
 
 
         const offset =
             circumference -
-            (
-                percentage / 100
-            ) * circumference;
+            (percentage / 100) * circumference;
 
+
+        /*
+            Animate progress circle.
+        */
+
+        progressCircle.style.strokeDasharray =
+            circumference;
 
         progressCircle.style.strokeDashoffset =
             offset;
@@ -1211,12 +1214,13 @@ async function loadLeetCodeSolvedProgress() {
             error
         );
 
+
         solvedCount.textContent = "--";
 
         totalQuestions.textContent = "--";
 
         progressCircle.style.strokeDashoffset =
-            314.16;
+            2 * Math.PI * 50;
 
     }
 
