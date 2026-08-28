@@ -89,7 +89,9 @@ function closeCertificate() {
 }
 
 
-// Close when clicking outside certificate
+// ======================================================
+// CLOSE CERTIFICATE MODAL WHEN CLICKING OUTSIDE
+// ======================================================
 
 const certificateModal =
     document.getElementById("certificateModal");
@@ -107,7 +109,9 @@ if (certificateModal) {
 }
 
 
-// Close with Escape
+// ======================================================
+// CLOSE CERTIFICATE MODAL WITH ESCAPE
+// ======================================================
 
 document.addEventListener("keydown", function (e) {
 
@@ -120,6 +124,18 @@ document.addEventListener("keydown", function (e) {
 
 // ======================================================
 // LEETCODE HEATMAP
+// ======================================================
+
+// Your LeetCode username
+const LEETCODE_USERNAME = "Puskar_jaiswal_723";
+
+// Public LeetCode API
+const LEETCODE_API =
+    `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/calendar`;
+
+
+// ======================================================
+// LOAD LEETCODE HEATMAP
 // ======================================================
 
 async function loadLeetCodeHeatmap() {
@@ -145,15 +161,31 @@ async function loadLeetCodeHeatmap() {
 
     try {
 
-        total.textContent = "Loading activity...";
+        // Show loading message
+
+        total.textContent =
+            "Loading activity...";
+
+
+        heatmap.innerHTML = `
+            <div class="leetcode-loading">
+                Loading LeetCode activity...
+            </div>
+        `;
 
 
         // ==================================================
-        // CALL YOUR EXPRESS API
+        // CALL PUBLIC LEETCODE API
         // ==================================================
+
+        console.log(
+            "Fetching LeetCode data from:",
+            LEETCODE_API
+        );
+
 
         const response =
-            await fetch("/api/leetcode");
+            await fetch(LEETCODE_API);
 
 
         console.log(
@@ -162,10 +194,12 @@ async function loadLeetCodeHeatmap() {
         );
 
 
+        // Check response
+
         if (!response.ok) {
 
             throw new Error(
-                "API returned status " +
+                "LeetCode API returned status " +
                 response.status
             );
 
@@ -187,37 +221,74 @@ async function loadLeetCodeHeatmap() {
 
 
         // ==================================================
-        // CHECK USER
+        // GET CALENDAR
         // ==================================================
 
-        const user =
-            result?.data?.matchedUser;
+        let calendar = null;
 
 
-        if (!user) {
+        /*
+         * The API normally returns:
+         *
+         * {
+         *     "data": {
+         *         ...
+         *     }
+         * }
+         *
+         * We handle multiple possible response formats
+         * so the heatmap is more robust.
+         */
 
-            throw new Error(
-                "LeetCode user not found"
-            );
+
+        if (result?.data?.matchedUser?.submissionCalendar) {
+
+            calendar =
+                result.data.matchedUser.submissionCalendar;
+
+        }
+
+        else if (result?.submissionCalendar) {
+
+            calendar =
+                result.submissionCalendar;
+
+        }
+
+        else if (result?.data?.submissionCalendar) {
+
+            calendar =
+                result.data.submissionCalendar;
+
+        }
+
+        else if (result?.calendar) {
+
+            calendar =
+                result.calendar;
 
         }
 
 
         // ==================================================
-        // GET SUBMISSION CALENDAR
+        // CHECK CALENDAR
         // ==================================================
 
-        let calendar =
-            user.submissionCalendar;
+        if (!calendar) {
+
+            console.error(
+                "Could not find submission calendar.",
+                result
+            );
+
+            throw new Error(
+                "Submission calendar not found"
+            );
+
+        }
 
 
-        console.log(
-            "Raw submission calendar:",
-            calendar
-        );
-
-
-        // LeetCode sends this as a STRING
+        // LeetCode may return the calendar as a string
 
         if (typeof calendar === "string") {
 
@@ -228,7 +299,7 @@ async function loadLeetCodeHeatmap() {
 
 
         console.log(
-            "Parsed calendar:",
+            "Parsed LeetCode calendar:",
             calendar
         );
 
@@ -244,6 +315,7 @@ async function loadLeetCodeHeatmap() {
         );
 
     }
+
 
     catch (error) {
 
@@ -277,6 +349,7 @@ function createLeetCodeHeatmap(
     heatmap,
     total
 ) {
+
 
     // Clear old cells
 
@@ -319,9 +392,13 @@ function createLeetCodeHeatmap(
     );
 
 
-    // Last 365 days
+    // ==================================================
+    // LAST 365 DAYS
+    // ==================================================
 
-    const startDate = new Date(todayUTC);
+    const startDate =
+        new Date(todayUTC);
+
 
     startDate.setUTCDate(
         startDate.getUTCDate() - 364
@@ -476,17 +553,15 @@ function createLeetCodeHeatmap(
 
 
     console.log(
-        "Heatmap created successfully!"
+        "LeetCode heatmap created successfully!"
     );
 
 }
 
 
 // ======================================================
-// IMPORTANT: LOAD HEATMAP
+// LOAD HEATMAP WHEN PAGE LOADS
 // ======================================================
-
-// This was missing from your previous code.
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -496,13 +571,3 @@ document.addEventListener(
 
     }
 );
-const express = require("express");
-const path = require("path");
-
-const app = express();
-
-app.use(express.static(__dirname));
-
-app.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
-});
