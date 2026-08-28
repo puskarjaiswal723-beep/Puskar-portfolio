@@ -1,4 +1,3 @@
-```css
 :root {
     --bg: #070909;
     --panel: #0d1110;
@@ -10,16 +9,11 @@
     --text: #f2f5f2;
     --muted: #8c9490;
 
-    --line: rgba(255,255,255,.08);
+    --line: rgba(255, 255, 255, 0.08);
 
-    --serif: 'Playfair Display', serif;
-    --sans: 'DM Sans', sans-serif;
+    --serif: "Playfair Display", serif;
+    --sans: "DM Sans", sans-serif;
 }
-
-
-/* ======================================================
-   RESET
-====================================================== */
 
 * {
     box-sizing: border-box;
@@ -46,36 +40,32 @@ a {
     color: #031008;
 }
 
-
-/* ======================================================
-   BACKGROUND
-====================================================== */
+/* ================= BACKGROUND ================= */
 
 .grid-bg {
     position: fixed;
     inset: 0;
     z-index: -4;
-    opacity: .17;
+    opacity: 0.17;
 
     background-image:
         linear-gradient(
-            rgba(255,255,255,.035) 1px,
+            rgba(255, 255, 255, 0.035) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(255,255,255,.035) 1px,
+            rgba(255, 255, 255, 0.035) 1px,
             transparent 1px
         );
 
     background-size: 64px 64px;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            #000,
-            transparent 85%
-        );
+    mask-image: linear-gradient(
+        to bottom,
+        #000,
+        transparent 85%
+    );
 }
 
 .neon-orbit {
@@ -87,14 +77,13 @@ a {
 
     border: 5px solid var(--green);
 
-    filter:
-        drop-shadow(
-            0 0 16px rgba(0,245,106,.55)
-        );
+    filter: drop-shadow(
+        0 0 16px rgba(0, 245, 106, 0.55)
+    );
 
     transform: rotate(42deg);
     pointer-events: none;
-    opacity: .72;
+    opacity: 0.72;
 }
 
 .orbit-one {
@@ -105,7 +94,7 @@ a {
 .orbit-two {
     left: -310px;
     bottom: -300px;
-    opacity: .28;
+    opacity: 0.28;
 }
 
 .cursor-glow {
@@ -117,29 +106,23 @@ a {
 
     border-radius: 50%;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(0,245,106,.10),
-            transparent 65%
-        );
+    background: radial-gradient(
+        circle,
+        rgba(0, 245, 106, 0.1),
+        transparent 65%
+    );
 
     pointer-events: none;
 
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
-
-/* ======================================================
-   NAVBAR
-====================================================== */
+/* ================= NAVBAR ================= */
 
 .navbar {
     height: 70px;
 
-    border-bottom:
-        1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 
     display: flex;
     align-items: center;
@@ -150,8 +133,7 @@ a {
     position: sticky;
     top: 0;
 
-    background:
-        rgba(7,9,9,.78);
+    background: rgba(7, 9, 9, 0.78);
 
     backdrop-filter: blur(16px);
 
@@ -160,12 +142,11 @@ a {
 
 .brand {
     color: var(--text);
-
     font-weight: 700;
     text-decoration: none;
 
     font-size: 17px;
-    letter-spacing: -.4px;
+    letter-spacing: -0.4px;
 }
 
 .brand-mark {
@@ -182,7 +163,7 @@ a {
     color: #aeb5b1;
     text-decoration: none;
     font-size: 12px;
-    transition: .25s;
+    transition: 0.25s;
 }
 
 .navbar nav a:hover {
@@ -215,13 +196,11 @@ a {
 
     color: var(--green);
 
-    background:
-        rgba(0,245,106,.04);
+    background: rgba(0, 245, 106, 0.04);
 
-    border:
-        1px solid rgba(0,245,106,.45);
+    border: 1px solid rgba(0, 245, 106, 0.45);
 
-    transition: .25s ease;
+    transition: 0.25s ease;
 }
 
 .cv-btn:hover {
@@ -229,7 +208,7 @@ a {
     color: #031008;
 
     box-shadow:
-        0 0 25px rgba(0,245,106,.18);
+        0 0 25px rgba(0, 245, 106, 0.18);
 
     transform: translateY(-2px);
 }
@@ -242,10 +221,7 @@ a {
     border-radius: 2px;
 }
 
-
-/* ======================================================
-   COMMON
-====================================================== */
+/* ================= COMMON ================= */
 
 .section-pad {
     padding: 105px 7.5%;
@@ -297,18 +273,14 @@ a {
     color: var(--green);
 }
 
-
-/* ======================================================
-   HERO
-====================================================== */
+/* ================= HERO ================= */
 
 .hero {
     min-height: 720px;
 
     display: grid;
 
-    grid-template-columns:
-        1.05fr .95fr;
+    grid-template-columns: 1.05fr 0.95fr;
 
     align-items: center;
 
@@ -318,8 +290,7 @@ a {
 }
 
 .hero h1 {
-    font-size:
-        clamp(48px,5.2vw,78px);
+    font-size: clamp(48px, 5.2vw, 78px);
 
     margin: 25px 0;
 }
@@ -345,10 +316,9 @@ a {
 .btn {
     padding: 13px 19px;
 
-    border:
-        1px solid rgba(0,245,106,.5);
+    border: 1px solid rgba(0, 245, 106, 0.5);
 
-    transition: .25s;
+    transition: 0.25s;
 }
 
 .btn.primary {
@@ -358,7 +328,7 @@ a {
 
 .btn.primary:hover {
     box-shadow:
-        0 0 30px rgba(0,245,106,.18);
+        0 0 30px rgba(0, 245, 106, 0.18);
 
     transform: translateY(-2px);
 }
@@ -366,8 +336,7 @@ a {
 .btn.secondary {
     color: #e2e7e4;
 
-    background:
-        rgba(255,255,255,.025);
+    background: rgba(255, 255, 255, 0.025);
 }
 
 .btn.secondary:hover {
@@ -403,10 +372,7 @@ a {
     letter-spacing: 1px;
 }
 
-
-/* ======================================================
-   PORTRAIT
-====================================================== */
+/* ================= PORTRAIT ================= */
 
 .hero-visual {
     height: 550px;
@@ -426,37 +392,34 @@ a {
 
     overflow: hidden;
 
-    border:
-        1px solid rgba(0,245,106,.28);
+    border: 1px solid rgba(0, 245, 106, 0.28);
 
-    background:
-        linear-gradient(
-            145deg,
-            #151a18,
-            #070908 70%
-        );
+    background: linear-gradient(
+        145deg,
+        #151a18,
+        #070908 70%
+    );
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,.55),
-        0 0 40px rgba(0,245,106,.05);
+        0 30px 100px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(0, 245, 106, 0.05);
 
     isolation: isolate;
 
     transition:
-        transform .5s ease,
-        border-color .5s ease,
-        box-shadow .5s ease;
+        transform 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
 }
 
 .portrait-card:hover {
     transform: translateY(-8px);
 
-    border-color:
-        rgba(0,245,106,.55);
+    border-color: rgba(0, 245, 106, 0.55);
 
     box-shadow:
-        0 40px 110px rgba(0,0,0,.65),
-        0 0 45px rgba(0,245,106,.10);
+        0 40px 110px rgba(0, 0, 0, 0.65),
+        0 0 45px rgba(0, 245, 106, 0.1);
 }
 
 .avatar-placeholder {
@@ -484,22 +447,22 @@ a {
     object-position: 50% 20%;
 
     filter:
-        brightness(.82)
+        brightness(0.82)
         contrast(1.08)
-        saturate(.85);
+        saturate(0.85);
 
     transition:
-        transform .6s ease,
-        filter .6s ease;
+        transform 0.6s ease,
+        filter 0.6s ease;
 }
 
 .portrait-card:hover .profile-image {
     transform: scale(1.04);
 
     filter:
-        brightness(.9)
+        brightness(0.9)
         contrast(1.08)
-        saturate(.95);
+        saturate(0.95);
 }
 
 .avatar-placeholder::after {
@@ -509,13 +472,12 @@ a {
 
     inset: 0;
 
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(7,9,9,.05) 0%,
-            transparent 45%,
-            rgba(7,9,9,.65) 100%
-        );
+    background: linear-gradient(
+        to bottom,
+        rgba(7, 9, 9, 0.05) 0%,
+        transparent 45%,
+        rgba(7, 9, 9, 0.65) 100%
+    );
 
     pointer-events: none;
 }
@@ -533,18 +495,18 @@ a {
         linear-gradient(
             90deg,
             transparent 49.7%,
-            rgba(0,245,106,.12) 50%,
+            rgba(0, 245, 106, 0.12) 50%,
             transparent 50.3%
         ),
         linear-gradient(
             transparent 49.7%,
-            rgba(0,245,106,.08) 50%,
+            rgba(0, 245, 106, 0.08) 50%,
             transparent 50.3%
         );
 
     background-size: 55px 55px;
 
-    opacity: .28;
+    opacity: 0.28;
 }
 
 .scan-line {
@@ -562,28 +524,26 @@ a {
     background: var(--green);
 
     box-shadow:
-        0 0 12px rgba(0,245,106,.8),
-        0 0 30px rgba(0,245,106,.35);
+        0 0 12px rgba(0, 245, 106, 0.8),
+        0 0 30px rgba(0, 245, 106, 0.35);
 
-    opacity: .65;
+    opacity: 0.65;
 
-    animation:
-        scan 5s linear infinite;
+    animation: scan 5s linear infinite;
 }
 
 @keyframes scan {
-
     0% {
         top: 0%;
         opacity: 0;
     }
 
     10% {
-        opacity: .7;
+        opacity: 0.7;
     }
 
     90% {
-        opacity: .7;
+        opacity: 0.7;
     }
 
     100% {
@@ -592,10 +552,7 @@ a {
     }
 }
 
-
-/* ======================================================
-   TRUST STRIP
-====================================================== */
+/* ================= TRUST ================= */
 
 .trust-strip {
     border-top: 1px solid var(--line);
@@ -629,10 +586,7 @@ a {
     color: #b9c0bc;
 }
 
-
-/* ======================================================
-   ABOUT
-====================================================== */
+/* ================= ABOUT ================= */
 
 .section-intro {
     max-width: 650px;
@@ -640,11 +594,9 @@ a {
 
 .section h2,
 .contact h2 {
-    font-size:
-        clamp(42px,5vw,68px);
+    font-size: clamp(42px, 5vw, 68px);
 
-    margin:
-        20px 0 25px;
+    margin: 20px 0 25px;
 }
 
 .section-intro > p:not(.eyebrow) {
@@ -667,16 +619,12 @@ a {
     font-size: 13px;
 }
 
-
-/* ======================================================
-   FEATURE CARDS
-====================================================== */
+/* ================= FEATURE CARDS ================= */
 
 .feature-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 14px;
 
@@ -688,31 +636,27 @@ a {
 
     min-height: 245px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.035),
-            rgba(255,255,255,.01)
-        );
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.035),
+        rgba(255, 255, 255, 0.01)
+    );
 
-    border:
-        1px solid var(--line);
+    border: 1px solid var(--line);
 
-    transition: .35s ease;
+    transition: 0.35s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-7px);
 
-    border-color:
-        rgba(0,245,106,.28);
+    border-color: rgba(0, 245, 106, 0.28);
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,245,106,.055),
-            rgba(255,255,255,.01)
-        );
+    background: linear-gradient(
+        145deg,
+        rgba(0, 245, 106, 0.055),
+        rgba(255, 255, 255, 0.01)
+    );
 }
 
 .feature-card .icon {
@@ -736,33 +680,25 @@ a {
     line-height: 1.7;
 }
 
-
-/* ======================================================
-   DARK PANEL
-====================================================== */
+/* ================= DARK PANEL ================= */
 
 .dark-panel {
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.018),
-            rgba(255,255,255,.006)
-        );
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.018),
+        rgba(255, 255, 255, 0.006)
+    );
 
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
 }
 
-
-/* ======================================================
-   SKILLS
-====================================================== */
+/* ================= SKILLS ================= */
 
 .skill-layout {
     display: grid;
 
-    grid-template-columns:
-        1.1fr .9fr;
+    grid-template-columns: 1.1fr 0.9fr;
 
     gap: 90px;
 
@@ -780,8 +716,7 @@ a {
 .skill-row {
     display: grid;
 
-    grid-template-columns:
-        1fr auto;
+    grid-template-columns: 1fr auto;
 
     gap: 8px;
 }
@@ -811,13 +746,11 @@ a {
 }
 
 .skill-row i {
-    grid-column:
-        1 / -1;
+    grid-column: 1 / -1;
 
     height: 3px;
 
-    background:
-        rgba(255,255,255,.07);
+    background: rgba(255, 255, 255, 0.07);
 
     overflow: hidden;
 }
@@ -830,7 +763,7 @@ a {
     background: var(--green);
 
     box-shadow:
-        0 0 12px rgba(0,245,106,.5);
+        0 0 12px rgba(0, 245, 106, 0.5);
 }
 
 .tech-cloud {
@@ -846,42 +779,35 @@ a {
 .tech-cloud span {
     padding: 11px 15px;
 
-    border:
-        1px solid var(--line);
+    border: 1px solid var(--line);
 
     color: #9aa39e;
 
     font-size: 11px;
 
-    transition: .25s;
+    transition: 0.25s;
 }
 
 .tech-cloud span:hover {
     color: var(--green);
 
-    border-color:
-        rgba(0,245,106,.4);
+    border-color: rgba(0, 245, 106, 0.4);
 
     transform: translateY(-3px);
 }
 
-
-/* ======================================================
-   LEETCODE
-====================================================== */
+/* ================= LEETCODE ================= */
 
 .leetcode-card {
     margin-top: 40px;
 
     padding: 30px;
 
-    border:
-        1px solid rgba(255,255,255,.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     border-radius: 18px;
 
-    background:
-        rgba(255,255,255,.025);
+    background: rgba(255, 255, 255, 0.025);
 
     overflow-x: auto;
 }
@@ -889,8 +815,7 @@ a {
 .leetcode-top {
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     align-items: center;
 
@@ -902,7 +827,7 @@ a {
 
     letter-spacing: 2px;
 
-    opacity: .5;
+    opacity: 0.5;
 }
 
 .leetcode-top h3 {
@@ -919,11 +844,6 @@ a {
     font-size: 14px;
 }
 
-
-/* ======================================================
-   LEETCODE STATS
-====================================================== */
-
 .leetcode-stats {
     display: flex;
 
@@ -937,11 +857,9 @@ a {
 
     padding: 15px 18px;
 
-    border:
-        1px solid rgba(255,255,255,.07);
+    border: 1px solid rgba(255, 255, 255, 0.07);
 
-    background:
-        rgba(255,255,255,.015);
+    background: rgba(255, 255, 255, 0.015);
 }
 
 .leetcode-stat strong {
@@ -966,10 +884,7 @@ a {
     letter-spacing: 1px;
 }
 
-
-/* ======================================================
-   HEATMAP
-====================================================== */
+/* ================= HEATMAP ================= */
 
 .heatmap-wrapper {
     min-width: 780px;
@@ -1010,8 +925,7 @@ a {
 
     display: grid;
 
-    grid-template-rows:
-        repeat(7, 13px);
+    grid-template-rows: repeat(7, 13px);
 
     row-gap: 5px;
 }
@@ -1023,7 +937,7 @@ a {
 
     font-size: 10px;
 
-    opacity: .45;
+    opacity: 0.45;
 }
 
 .leetcode-heatmap {
@@ -1031,8 +945,7 @@ a {
 
     grid-auto-flow: column;
 
-    grid-template-rows:
-        repeat(7, 13px);
+    grid-template-rows: repeat(7, 13px);
 
     grid-auto-columns: 13px;
 
@@ -1051,8 +964,8 @@ a {
     border-radius: 3px;
 
     transition:
-        transform .15s ease,
-        box-shadow .15s ease;
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
 
     cursor: pointer;
 
@@ -1063,15 +976,10 @@ a {
     transform: scale(1.35);
 
     box-shadow:
-        0 0 8px rgba(0,255,102,.5);
+        0 0 8px rgba(0, 255, 102, 0.5);
 
     z-index: 5;
 }
-
-
-/* ======================================================
-   LEETCODE COLORS
-====================================================== */
 
 .heat-cell.level-0 {
     background: #161b22;
@@ -1093,13 +1001,10 @@ a {
     background: #39d353;
 
     box-shadow:
-        0 0 5px rgba(57,211,83,.25);
+        0 0 5px rgba(57, 211, 83, 0.25);
 }
 
-
-/* ======================================================
-   TOOLTIP
-====================================================== */
+/* ================= TOOLTIP ================= */
 
 .heat-tooltip {
     position: fixed;
@@ -1114,8 +1019,7 @@ a {
 
     color: #e9efeb;
 
-    border:
-        1px solid rgba(0,245,106,.35);
+    border: 1px solid rgba(0, 245, 106, 0.35);
 
     font-size: 11px;
 
@@ -1123,31 +1027,26 @@ a {
 
     opacity: 0;
 
-    transform:
-        translate(-50%, -115%);
+    transform: translate(-50%, -115%);
 
-    transition: opacity .12s ease;
+    transition: opacity 0.12s ease;
 
     white-space: nowrap;
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,.45);
+        0 8px 25px rgba(0, 0, 0, 0.45);
 }
 
 .heat-tooltip.visible {
     opacity: 1;
 }
 
-
-/* ======================================================
-   HEATMAP BOTTOM
-====================================================== */
+/* ================= HEATMAP BOTTOM ================= */
 
 .heatmap-bottom {
     display: flex;
 
-    justify-content:
-        flex-end;
+    justify-content: flex-end;
 
     align-items: center;
 
@@ -1157,7 +1056,7 @@ a {
 
     font-size: 12px;
 
-    opacity: .7;
+    opacity: 0.7;
 }
 
 .heatmap-legend {
@@ -1202,8 +1101,7 @@ a {
 
     padding: 15px;
 
-    border:
-        1px solid rgba(255,100,100,.15);
+    border: 1px solid rgba(255, 100, 100, 0.15);
 
     color: #ff7777;
 
@@ -1212,16 +1110,12 @@ a {
     line-height: 1.6;
 }
 
-
-/* ======================================================
-   CERTIFICATES
-====================================================== */
+/* ================= CERTIFICATES ================= */
 
 .certificate-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 16px;
 
@@ -1231,15 +1125,13 @@ a {
 }
 
 .certificate-card {
-    border:
-        1px solid rgba(255,255,255,.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 
-    background:
-        rgba(255,255,255,.02);
+    background: rgba(255, 255, 255, 0.02);
 
     cursor: pointer;
 
-    transition: .35s ease;
+    transition: 0.35s ease;
 
     overflow: hidden;
 }
@@ -1267,7 +1159,7 @@ a {
 
     display: block;
 
-    transition: .4s ease;
+    transition: 0.4s ease;
 }
 
 .certificate-card:hover .certificate-image img {
@@ -1284,12 +1176,11 @@ a {
     align-items: center;
     justify-content: center;
 
-    background:
-        rgba(0,0,0,.65);
+    background: rgba(0, 0, 0, 0.65);
 
     opacity: 0;
 
-    transition: .3s ease;
+    transition: 0.3s ease;
 }
 
 .certificate-card:hover .certificate-overlay {
@@ -1299,8 +1190,7 @@ a {
 .certificate-overlay span {
     color: var(--green);
 
-    border:
-        1px solid var(--green);
+    border: 1px solid var(--green);
 
     padding: 9px 16px;
 
@@ -1333,19 +1223,14 @@ a {
     color: #888;
 }
 
-
-/* ======================================================
-   PROJECTS
-====================================================== */
+/* ================= PROJECTS ================= */
 
 .section-heading.split {
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    align-items:
-        flex-end;
+    align-items: flex-end;
 
     gap: 60px;
 }
@@ -1363,8 +1248,7 @@ a {
 .project-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 16px;
 
@@ -1372,32 +1256,27 @@ a {
 }
 
 .project-card {
-    border:
-        1px solid var(--line);
+    border: 1px solid var(--line);
 
-    background:
-        var(--panel);
+    background: var(--panel);
 
     overflow: hidden;
 
-    transition: .35s;
+    transition: 0.35s;
 }
 
 .project-card:hover {
     transform: translateY(-6px);
 
-    border-color:
-        rgba(0,245,106,.25);
+    border-color: rgba(0, 245, 106, 0.25);
 }
 
 .project-card.large {
-    grid-column:
-        span 2;
+    grid-column: span 2;
 
     display: grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .project-art {
@@ -1408,15 +1287,13 @@ a {
     align-items: center;
     justify-content: center;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(0,245,106,.08),
-            transparent 65%
-        );
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 245, 106, 0.08),
+        transparent 65%
+    );
 
-    border-bottom:
-        1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 
     position: relative;
 
@@ -1426,8 +1303,7 @@ a {
 .project-card.large .project-art {
     border-bottom: 0;
 
-    border-right:
-        1px solid var(--line);
+    border-right: 1px solid var(--line);
 }
 
 .matrix-art {
@@ -1440,18 +1316,16 @@ a {
     line-height: 1.7;
 
     text-shadow:
-        0 0 14px rgba(0,245,106,.45);
+        0 0 14px rgba(0, 245, 106, 0.45);
 }
 
 .chart-line {
     width: 65%;
     height: 2px;
 
-    background:
-        var(--green);
+    background: var(--green);
 
-    transform:
-        rotate(-14deg);
+    transform: rotate(-14deg);
 
     box-shadow:
         0 0 15px var(--green);
@@ -1462,9 +1336,9 @@ a {
 
     transform:
         rotate(18deg)
-        translate(35px,25px);
+        translate(35px, 25px);
 
-    opacity: .35;
+    opacity: 0.35;
 }
 
 .data-art {
@@ -1478,11 +1352,10 @@ a {
 .data-art div {
     width: 25px;
 
-    background:
-        var(--green);
+    background: var(--green);
 
     box-shadow:
-        0 0 18px rgba(0,245,106,.25);
+        0 0 18px rgba(0, 245, 106, 0.25);
 }
 
 .data-art div:nth-child(1) {
@@ -1539,16 +1412,12 @@ a {
     font-size: 12px;
 }
 
-
-/* ======================================================
-   ACHIEVEMENTS
-====================================================== */
+/* ================= ACHIEVEMENTS ================= */
 
 .achievement-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 14px;
 
@@ -1558,8 +1427,7 @@ a {
 .achievement {
     padding: 30px;
 
-    border:
-        1px solid var(--line);
+    border: 1px solid var(--line);
 
     min-height: 170px;
 }
@@ -1593,25 +1461,20 @@ a {
 
     padding-top: 35px;
 
-    border-top:
-        1px solid var(--line);
+    border-top: 1px solid var(--line);
 
     color: #8d9792;
 
     font-family: var(--serif);
 
-    font-size:
-        clamp(20px,2vw,28px);
+    font-size: clamp(20px, 2vw, 28px);
 
     line-height: 1.5;
 
     max-width: 800px;
 }
 
-
-/* ======================================================
-   EDUCATION
-====================================================== */
+/* ================= EDUCATION ================= */
 
 .education-grid {
     display: flex;
@@ -1626,8 +1489,7 @@ a {
 .education-card {
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     align-items: center;
 
@@ -1635,25 +1497,21 @@ a {
 
     padding: 45px;
 
-    border:
-        1px solid var(--line);
+    border: 1px solid var(--line);
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,245,106,.035),
-            rgba(255,255,255,.01)
-        );
+    background: linear-gradient(
+        145deg,
+        rgba(0, 245, 106, 0.035),
+        rgba(255, 255, 255, 0.01)
+    );
 
-    transition: .3s ease;
+    transition: 0.3s ease;
 }
 
 .education-card:hover {
-    border-color:
-        rgba(0,245,106,.28);
+    border-color: rgba(0, 245, 106, 0.28);
 
-    transform:
-        translateY(-3px);
+    transform: translateY(-3px);
 }
 
 .education-number {
@@ -1712,21 +1570,16 @@ a {
     letter-spacing: 2px;
 }
 
-
-/* ======================================================
-   CONTACT
-====================================================== */
+/* ================= CONTACT ================= */
 
 .contact {
-    border-top:
-        1px solid var(--line);
+    border-top: 1px solid var(--line);
 
-    background:
-        radial-gradient(
-            circle at 50% 30%,
-            rgba(0,245,106,.055),
-            transparent 45%
-        );
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(0, 245, 106, 0.055),
+        transparent 45%
+    );
 }
 
 .contact-inner {
@@ -1751,60 +1604,47 @@ a {
     margin-top: 30px;
 }
 
-
-/* ======================================================
-   FOOTER
-====================================================== */
+/* ================= FOOTER ================= */
 
 footer {
     padding: 28px 7.5%;
 
-    border-top:
-        1px solid var(--line);
+    border-top: 1px solid var(--line);
 
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     color: #59625e;
 
     font-size: 10px;
 
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
 }
 
-
-/* ======================================================
-   REVEAL
-====================================================== */
+/* ================= REVEAL ================= */
 
 .reveal {
     opacity: 0;
 
-    transform:
-        translateY(25px);
+    transform: translateY(25px);
 
     transition:
-        opacity .9s ease,
-        transform .9s ease;
+        opacity 0.9s ease,
+        transform 0.9s ease;
 }
 
 .reveal.visible {
     opacity: 1;
 
-    transform:
-        translateY(0);
+    transform: translateY(0);
 }
 
 .delay-1 {
-    transition-delay: .15s;
+    transition-delay: 0.15s;
 }
 
-
-/* ======================================================
-   CERTIFICATE MODAL
-====================================================== */
+/* ================= MODAL ================= */
 
 .certificate-modal {
     position: fixed;
@@ -1816,11 +1656,9 @@ footer {
     align-items: center;
     justify-content: center;
 
-    background:
-        rgba(0,0,0,.88);
+    background: rgba(0, 0, 0, 0.88);
 
-    backdrop-filter:
-        blur(10px);
+    backdrop-filter: blur(10px);
 
     z-index: 9999;
 
@@ -1829,8 +1667,8 @@ footer {
     visibility: hidden;
 
     transition:
-        opacity .3s ease,
-        visibility .3s ease;
+        opacity 0.3s ease,
+        visibility 0.3s ease;
 
     padding: 30px;
 }
@@ -1851,8 +1689,7 @@ footer {
     align-items: center;
     justify-content: center;
 
-    animation:
-        certificateZoom .3s ease;
+    animation: certificateZoom 0.3s ease;
 }
 
 .certificate-modal-content img {
@@ -1866,12 +1703,11 @@ footer {
 
     object-fit: contain;
 
-    border:
-        1px solid rgba(0,255,102,.35);
+    border: 1px solid rgba(0, 255, 102, 0.35);
 
     box-shadow:
-        0 0 30px rgba(0,255,102,.15),
-        0 30px 100px rgba(0,0,0,.7);
+        0 0 30px rgba(0, 255, 102, 0.15),
+        0 30px 100px rgba(0, 0, 0, 0.7);
 }
 
 .certificate-close {
@@ -1883,14 +1719,11 @@ footer {
     width: 38px;
     height: 38px;
 
-    border:
-        1px solid rgba(0,255,102,.4);
+    border: 1px solid rgba(0, 255, 102, 0.4);
 
-    background:
-        rgba(7,9,9,.9);
+    background: rgba(7, 9, 9, 0.9);
 
-    color:
-        #00ff66;
+    color: #00ff66;
 
     font-size: 18px;
 
@@ -1901,7 +1734,7 @@ footer {
     align-items: center;
     justify-content: center;
 
-    transition: .25s ease;
+    transition: 0.25s ease;
 
     z-index: 10;
 }
@@ -1912,30 +1745,24 @@ footer {
     color: #031008;
 
     box-shadow:
-        0 0 20px rgba(0,255,102,.4);
+        0 0 20px rgba(0, 255, 102, 0.4);
 
-    transform:
-        rotate(90deg);
+    transform: rotate(90deg);
 }
 
 @keyframes certificateZoom {
-
     from {
         opacity: 0;
-        transform: scale(.9);
+        transform: scale(0.9);
     }
 
     to {
         opacity: 1;
         transform: scale(1);
     }
-
 }
 
-
-/* ======================================================
-   RESPONSIVE
-====================================================== */
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 1100px) {
 
@@ -1944,17 +1771,13 @@ footer {
     }
 
     .feature-grid {
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .achievement-grid {
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-
 }
-
 
 @media (max-width: 900px) {
 
@@ -2000,7 +1823,7 @@ footer {
     }
 
     .portrait-card {
-        width: min(420px,85vw);
+        width: min(420px, 85vw);
         height: 540px;
     }
 
@@ -2019,9 +1842,7 @@ footer {
     .project-card.large {
         grid-column: span 2;
     }
-
 }
-
 
 @media (max-width: 768px) {
 
@@ -2042,9 +1863,7 @@ footer {
     .leetcode-stats {
         overflow-x: auto;
     }
-
 }
-
 
 @media (max-width: 650px) {
 
@@ -2062,9 +1881,6 @@ footer {
 
     .nav-actions {
         gap: 5px;
-
-
-
     }
 
     .cv-btn {
@@ -2083,8 +1899,7 @@ footer {
     }
 
     .hero h1 {
-        font-size:
-            clamp(38px,11vw,55px);
+        font-size: clamp(38px, 11vw, 55px);
     }
 
     .hero-text {
@@ -2141,8 +1956,7 @@ footer {
     .project-card.large .project-art {
         border-right: 0;
 
-        border-bottom:
-            1px solid var(--line);
+        border-bottom: 1px solid var(--line);
     }
 
     .project-art {
@@ -2196,9 +2010,7 @@ footer {
         top: -45px;
         right: 0;
     }
-
 }
-
 
 @media (max-width: 400px) {
 
@@ -2206,13 +2018,7 @@ footer {
         width: 90vw;
         height: 470px;
     }
-
 }
-
-
-/* ======================================================
-   REDUCED MOTION
-====================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -2223,11 +2029,10 @@ footer {
     *,
     *::before,
     *::after {
-        animation-duration: .01ms !important;
+        animation-duration: 0.01ms !important;
 
         animation-iteration-count: 1 !important;
 
-        transition-duration: .01ms !important;
+        transition-duration: 0.01ms !important;
     }
 }
-```
