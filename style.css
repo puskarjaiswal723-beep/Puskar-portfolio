@@ -2626,3 +2626,194 @@ img {
         min-width: 30%;
     }
 }
+/* ======================================================
+   MOBILE RESPONSIVE FIX
+====================================================== */
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* ---------- NAVBAR ---------- */
+
+    .navbar,
+    nav {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .nav-container {
+        width: 100%;
+        padding: 12px 16px;
+    }
+
+    .nav-links {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+    }
+
+    /* ---------- SECTIONS ---------- */
+
+    section {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .section-pad {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* ---------- SKILLS ---------- */
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .skills-left,
+    .skills-right {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Hide / contain decorative desktop graphic */
+    .skills-right {
+        overflow: hidden;
+    }
+
+    .skills-right svg,
+    .skills-right img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* ---------- HEADINGS ---------- */
+
+    h1 {
+        font-size: clamp(38px, 11vw, 60px);
+        line-height: 0.95;
+    }
+
+    h2 {
+        font-size: clamp(34px, 9vw, 48px);
+        line-height: 1;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    /* ---------- LEETCODE ---------- */
+
+    .leetcode-card {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .heatmap-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .heatmap-wrapper {
+        min-width: 780px;
+        width: 780px;
+    }
+
+    /* Make scrollbar subtle */
+    .heatmap-container::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    .heatmap-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .heatmap-container::-webkit-scrollbar-thumb {
+        background: #00ff66;
+        border-radius: 10px;
+    }
+
+    /* ---------- LEETCODE STATS ---------- */
+
+    .leetcode-stats {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .leetcode-stat {
+        flex: 0 0 auto;
+    }
+
+    /* ---------- PROJECTS ---------- */
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    /* ---------- CERTIFICATES ---------- */
+
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certificate-card {
+        width: 100%;
+    }
+
+    /* ---------- ACHIEVEMENTS ---------- */
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* ---------- EDUCATION ---------- */
+
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* ---------- CONTACT ---------- */
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* ---------- IMAGES ---------- */
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+}
