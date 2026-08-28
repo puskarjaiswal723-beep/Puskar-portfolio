@@ -2036,3 +2036,593 @@ footer {
         transition-duration: 0.01ms !important;
     }
 }
+/* =========================================================
+   MOBILE RESPONSIVE FIX
+   ========================================================= */
+
+/* Prevent accidental horizontal scrolling */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 24px;
+    }
+
+    .section-pad {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    /* Hero */
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 70px;
+        padding-bottom: 70px;
+        gap: 50px;
+    }
+
+    .hero-copy {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 8vw, 62px);
+        line-height: 1.05;
+    }
+
+    .hero-text {
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .mini-stats {
+        justify-content: center;
+    }
+
+    /* Portrait */
+    .hero-visual {
+        width: 100%;
+        min-height: auto;
+        height: auto;
+    }
+
+    .portrait-card {
+        width: min(420px, 80vw);
+        height: 500px;
+    }
+
+    /* Skills */
+    .skill-layout {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    /* Features */
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Achievements */
+    .achievement-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Projects */
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card.large {
+        grid-column: 1 / -1;
+    }
+
+    /* Education */
+    .education-card {
+        gap: 30px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    /* ---------- GLOBAL ---------- */
+
+    .section-pad {
+        padding: 70px 20px;
+    }
+
+    .section h2,
+    .contact h2 {
+        font-size: clamp(36px, 10vw, 50px);
+        line-height: 1.08;
+        letter-spacing: -1px;
+    }
+
+
+    /* ---------- NAVBAR ---------- */
+
+    .navbar {
+        height: 62px;
+        padding: 0 18px;
+    }
+
+    .brand {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .brand-mark {
+        margin-right: 5px;
+    }
+
+    .navbar nav {
+        display: none;
+    }
+
+    .nav-cta {
+        padding: 9px 11px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+        padding-top: 55px;
+        padding-bottom: 65px;
+        gap: 40px;
+    }
+
+    .hero-copy {
+        text-align: center;
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.7px;
+    }
+
+    .hero h1 {
+        font-size: clamp(36px, 10.8vw, 52px);
+        line-height: 1.04;
+        margin: 20px 0;
+        letter-spacing: -1px;
+    }
+
+    .hero-text {
+        font-size: 14px;
+        line-height: 1.75;
+        max-width: 100%;
+    }
+
+
+    /* ---------- HERO BUTTONS ---------- */
+
+    .hero-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .btn {
+        min-height: 46px;
+        font-size: 12px;
+        padding: 12px 16px;
+    }
+
+
+    /* ---------- MINI STATS ---------- */
+
+    .mini-stats {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 35px;
+    }
+
+    .mini-stats div {
+        flex: 1;
+        text-align: center;
+    }
+
+    .mini-stats b {
+        font-size: 16px;
+    }
+
+    .mini-stats span {
+        font-size: 8px;
+        letter-spacing: .7px;
+    }
+
+
+    /* ---------- PORTRAIT ---------- */
+
+    .hero-visual {
+        min-height: 0;
+        height: auto;
+        width: 100%;
+    }
+
+    .portrait-card {
+        width: min(360px, 88vw);
+        height: 460px;
+        margin: 0 auto;
+    }
+
+    .floating-chip {
+        font-size: 7px;
+        padding: 8px 9px;
+        letter-spacing: .8px;
+        max-width: 145px;
+    }
+
+    .chip-top {
+        top: 10%;
+        right: -5px;
+    }
+
+    .chip-mid {
+        top: 47%;
+        left: -5px;
+    }
+
+    .chip-bottom {
+        bottom: 10%;
+        right: -5px;
+    }
+
+
+    /* ---------- TRUST STRIP ---------- */
+
+    .trust-strip {
+        padding: 22px 20px;
+        gap: 14px 20px;
+        justify-content: center;
+    }
+
+    .trust-strip p,
+    .trust-strip span {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+
+    /* ---------- ABOUT ---------- */
+
+    .section-intro {
+        width: 100%;
+    }
+
+    .section-intro > p:not(.eyebrow) {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 40px;
+    }
+
+    .feature-card {
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .feature-card h3 {
+        font-size: 17px;
+    }
+
+    .feature-card p {
+        font-size: 13px;
+    }
+
+
+    /* ---------- SKILLS ---------- */
+
+    .skill-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 45px;
+    }
+
+    .skill-list {
+        gap: 25px;
+    }
+
+    .skill-row b {
+        font-size: 14px;
+    }
+
+    .skill-row small {
+        font-size: 10px;
+    }
+
+    .skill-row strong {
+        font-size: 12px;
+    }
+
+    .tech-cloud {
+        gap: 8px;
+    }
+
+    .tech-cloud span {
+        padding: 9px 12px;
+        font-size: 10px;
+    }
+
+
+    /* ---------- PROJECTS ---------- */
+
+    .section-heading.split {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .section-heading.split > p {
+        max-width: 100%;
+        font-size: 13px;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 40px;
+    }
+
+    .project-card.large {
+        grid-column: auto;
+        display: block;
+    }
+
+    .project-card.large .project-art {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .project-art {
+        min-height: 210px;
+    }
+
+    .project-meta {
+        padding: 24px;
+    }
+
+    .project-meta h3 {
+        font-size: 19px;
+    }
+
+    .project-meta p {
+        font-size: 12px;
+    }
+
+
+    /* ---------- ACHIEVEMENTS ---------- */
+
+    .achievement-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 40px;
+    }
+
+    .achievement {
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .achievement strong {
+        font-size: 32px;
+        margin-top: 18px;
+    }
+
+    .quote {
+        margin-top: 40px;
+        padding-top: 25px;
+        font-size: 20px;
+    }
+
+
+    /* ---------- EDUCATION ---------- */
+
+    .education-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        padding: 28px 24px;
+    }
+
+    .education-card h2 {
+        font-size: clamp(30px, 8vw, 42px);
+        line-height: 1.1;
+    }
+
+    .education-score {
+        text-align: left;
+        min-width: 0;
+    }
+
+    .education-score strong {
+        font-size: 48px;
+    }
+
+
+    /* ---------- CONTACT ---------- */
+
+    .contact-inner {
+        width: 100%;
+    }
+
+    .contact-inner > p:not(.eyebrow) {
+        font-size: 13px;
+    }
+
+    .contact-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .contact-actions .btn {
+        width: 100%;
+    }
+
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+        padding: 25px 20px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .section-pad {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .navbar {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .brand {
+        font-size: 13px;
+    }
+
+    .nav-cta {
+        padding: 8px 9px;
+        font-size: 9px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero-text {
+        font-size: 13px;
+    }
+
+    .portrait-card {
+        width: 88vw;
+        height: 430px;
+    }
+
+    .floating-chip {
+        font-size: 6px;
+        padding: 7px 8px;
+        max-width: 125px;
+    }
+
+    .chip-mid {
+        left: -3px;
+    }
+
+    .chip-top,
+    .chip-bottom {
+        right: -3px;
+    }
+
+    .mini-stats {
+        gap: 5px;
+    }
+
+    .mini-stats b {
+        font-size: 14px;
+    }
+
+    .mini-stats span {
+        font-size: 7px;
+    }
+
+    .feature-card,
+    .achievement {
+        padding: 20px;
+    }
+
+    .project-meta {
+        padding: 20px;
+    }
+
+    .education-card {
+        padding: 24px 20px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+    .brand {
+        font-size: 12px;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 31px;
+    }
+
+    .portrait-card {
+        height: 400px;
+    }
+
+    .floating-chip {
+        display: none;
+    }
+
+    .mini-stats {
+        flex-wrap: wrap;
+    }
+
+    .mini-stats div {
+        min-width: 30%;
+    }
+}
