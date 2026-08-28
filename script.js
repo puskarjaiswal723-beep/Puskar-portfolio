@@ -1,4 +1,10 @@
 /* ======================================================
+   PORTFOLIO JAVASCRIPT
+   Puskar Jaiswal
+====================================================== */
+
+
+/* ======================================================
    LEETCODE CONFIGURATION
 ====================================================== */
 
@@ -15,10 +21,14 @@ const LEETCODE_API =
 const cursor = document.querySelector(".cursor-glow");
 
 if (cursor) {
+
     window.addEventListener("pointermove", (event) => {
+
         cursor.style.left = `${event.clientX}px`;
         cursor.style.top = `${event.clientY}px`;
+
     });
+
 }
 
 
@@ -30,7 +40,7 @@ const revealElements = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
 
-    const observer = new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
         (entries) => {
 
             entries.forEach((entry) => {
@@ -39,7 +49,8 @@ if ("IntersectionObserver" in window) {
 
                     entry.target.classList.add("visible");
 
-                    observer.unobserve(entry.target);
+                    revealObserver.unobserve(entry.target);
+
                 }
 
             });
@@ -51,13 +62,17 @@ if ("IntersectionObserver" in window) {
     );
 
     revealElements.forEach((element) => {
-        observer.observe(element);
+
+        revealObserver.observe(element);
+
     });
 
 } else {
 
     revealElements.forEach((element) => {
+
         element.classList.add("visible");
+
     });
 
 }
@@ -67,11 +82,12 @@ if ("IntersectionObserver" in window) {
    SKILL BAR ANIMATION
 ====================================================== */
 
-const bars = document.querySelectorAll(".skill-row i span");
+const skillBars =
+    document.querySelectorAll(".skill-row i span");
 
 if ("IntersectionObserver" in window) {
 
-    const barObserver = new IntersectionObserver(
+    const skillObserver = new IntersectionObserver(
         (entries) => {
 
             entries.forEach((entry) => {
@@ -80,7 +96,8 @@ if ("IntersectionObserver" in window) {
 
                     entry.target.style.transform = "scaleX(1)";
 
-                    barObserver.unobserve(entry.target);
+                    skillObserver.unobserve(entry.target);
+
                 }
 
             });
@@ -91,19 +108,23 @@ if ("IntersectionObserver" in window) {
         }
     );
 
-    bars.forEach((bar) => {
+    skillBars.forEach((bar) => {
 
         bar.style.transformOrigin = "left";
         bar.style.transform = "scaleX(0)";
-        bar.style.transition = "transform 1.2s ease";
+        bar.style.transition =
+            "transform 1.2s ease";
 
-        barObserver.observe(bar);
+        skillObserver.observe(bar);
+
     });
 
 } else {
 
-    bars.forEach((bar) => {
+    skillBars.forEach((bar) => {
+
         bar.style.transform = "scaleX(1)";
+
     });
 
 }
@@ -115,8 +136,11 @@ if ("IntersectionObserver" in window) {
 
 function openCertificate(imagePath) {
 
-    const modal = document.getElementById("certificateModal");
-    const preview = document.getElementById("certificatePreview");
+    const modal =
+        document.getElementById("certificateModal");
+
+    const preview =
+        document.getElementById("certificatePreview");
 
     if (!modal || !preview) {
         return;
@@ -126,7 +150,10 @@ function openCertificate(imagePath) {
 
     modal.classList.add("active");
 
-    modal.setAttribute("aria-hidden", "false");
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
     document.body.style.overflow = "hidden";
 }
@@ -138,8 +165,11 @@ function openCertificate(imagePath) {
 
 function closeCertificate() {
 
-    const modal = document.getElementById("certificateModal");
-    const preview = document.getElementById("certificatePreview");
+    const modal =
+        document.getElementById("certificateModal");
+
+    const preview =
+        document.getElementById("certificatePreview");
 
     if (!modal) {
         return;
@@ -147,13 +177,19 @@ function closeCertificate() {
 
     modal.classList.remove("active");
 
-    modal.setAttribute("aria-hidden", "true");
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
     document.body.style.overflow = "";
 
     if (preview) {
+
         preview.src = "";
+
     }
+
 }
 
 
@@ -166,13 +202,18 @@ const certificateModal =
 
 if (certificateModal) {
 
-    certificateModal.addEventListener("click", (event) => {
+    certificateModal.addEventListener(
+        "click",
+        (event) => {
 
-        if (event.target === certificateModal) {
-            closeCertificate();
+            if (event.target === certificateModal) {
+
+                closeCertificate();
+
+            }
+
         }
-
-    });
+    );
 
 }
 
@@ -181,606 +222,790 @@ if (certificateModal) {
    ESCAPE KEY
 ====================================================== */
 
-document.addEventListener("keydown", (event) => {
+document.addEventListener(
+    "keydown",
+    (event) => {
 
-    if (event.key === "Escape") {
-        closeCertificate();
+        if (event.key === "Escape") {
+
+            closeCertificate();
+
+        }
+
     }
-
-});
+);
 
 
 /* ======================================================
-   LEETCODE HEATMAP
+   LEETCODE HELPERS
 ====================================================== */
 
-function loadLeetCodeActivity() {
+
+/*
+    Convert timestamp to YYYY-MM-DD.
+
+    LeetCode's calendar timestamps represent
+    dates at UTC midnight.
+*/
+
+function timestampToDateKey(timestamp) {
+
+    const date =
+        new Date(Number(timestamp) * 1000);
+
+    return date.toISOString().slice(0, 10);
+}
+
+
+/*
+    Convert Date object to YYYY-MM-DD.
+*/
+
+function dateToKey(date) {
+
+    return date.toISOString().slice(0, 10);
+
+}
+
+
+/*
+    Get activity level.
+
+    0 = no submissions
+    1 = 1-2
+    2 = 3-5
+    3 = 6-9
+    4 = 10+
+*/
+
+function getActivityLevel(count) {
+
+    count = Number(count) || 0;
+
+    if (count === 0) {
+        return 0;
+    }
+
+    if (count <= 2) {
+        return 1;
+    }
+
+    if (count <= 5) {
+        return 2;
+    }
+
+    if (count <= 9) {
+        return 3;
+    }
+
+    return 4;
+
+}
+
+
+/*
+    Extract submissionCalendar from
+    different possible API response structures.
+*/
+
+function extractCalendar(data) {
+
+    let calendar = null;
+
+
+    /* ----------------------------------------------
+       Direct submissionCalendar
+    ---------------------------------------------- */
+
+    if (data && data.submissionCalendar) {
+
+        calendar = data.submissionCalendar;
+
+    }
+
+
+    /* ----------------------------------------------
+       data.data.submissionCalendar
+    ---------------------------------------------- */
+
+    else if (
+        data &&
+        data.data &&
+        data.data.submissionCalendar
+    ) {
+
+        calendar =
+            data.data.submissionCalendar;
+
+    }
+
+
+    /* ----------------------------------------------
+       data.data.matchedUser.userCalendar
+    ---------------------------------------------- */
+
+    else if (
+        data &&
+        data.data &&
+        data.data.matchedUser &&
+        data.data.matchedUser.userCalendar
+    ) {
+
+        calendar =
+            data.data.matchedUser.userCalendar
+                .submissionCalendar;
+
+    }
+
+
+    /* ----------------------------------------------
+       data.matchedUser.userCalendar
+    ---------------------------------------------- */
+
+    else if (
+        data &&
+        data.matchedUser &&
+        data.matchedUser.userCalendar
+    ) {
+
+        calendar =
+            data.matchedUser.userCalendar
+                .submissionCalendar;
+
+    }
+
+
+    if (!calendar) {
+
+        return null;
+
+    }
+
+
+    /* ----------------------------------------------
+       Calendar may be JSON string
+    ---------------------------------------------- */
+
+    if (typeof calendar === "string") {
+
+        try {
+
+            return JSON.parse(calendar);
+
+        } catch (error) {
+
+            console.error(
+                "Could not parse submissionCalendar:",
+                error
+            );
+
+            return null;
+
+        }
+
+    }
+
+
+    /* ----------------------------------------------
+       Calendar may already be an object
+    ---------------------------------------------- */
+
+    if (
+        typeof calendar === "object"
+    ) {
+
+        return calendar;
+
+    }
+
+
+    return null;
+
+}
+
+
+/* ======================================================
+   CREATE LAST 365 DAYS
+====================================================== */
+
+function createLast365Days() {
+
+    const days = [];
+
+    const today = new Date();
+
+    /*
+        Normalize to UTC.
+    */
+
+    const todayUTC =
+        new Date(
+            Date.UTC(
+                today.getUTCFullYear(),
+                today.getUTCMonth(),
+                today.getUTCDate()
+            )
+        );
+
+
+    /*
+        364 days before today
+        + today = 365 days
+    */
+
+    const startDate =
+        new Date(todayUTC);
+
+    startDate.setUTCDate(
+        startDate.getUTCDate() - 364
+    );
+
+
+    const current =
+        new Date(startDate);
+
+
+    while (current <= todayUTC) {
+
+        days.push(
+            new Date(current)
+        );
+
+        current.setUTCDate(
+            current.getUTCDate() + 1
+        );
+
+    }
+
+
+    return days;
+
+}
+
+
+/* ======================================================
+   CREATE HEATMAP
+====================================================== */
+
+function renderHeatmap(calendar) {
 
     const heatmap =
-        document.getElementById("leetcodeHeatmap");
+        document.getElementById(
+            "leetcodeHeatmap"
+        );
 
     const months =
-        document.getElementById("heatmapMonths");
-
-    const totalText =
-        document.getElementById("leetcodeTotal");
-
-    const activeDays =
-        document.getElementById("leetcodeActiveDays");
-
-    const currentStreak =
-        document.getElementById("leetcodeCurrentStreak");
-
-    const totalSubmissions =
-        document.getElementById("leetcodeTotalSubmissions");
-
-    const errorBox =
-        document.getElementById("leetcodeError");
-
+        document.getElementById(
+            "heatmapMonths"
+        );
 
     if (!heatmap) {
-        console.error("leetcodeHeatmap element not found.");
+
+        console.error(
+            "LeetCode heatmap element not found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Clear previous content.
+    */
+
+    heatmap.innerHTML = "";
+
+    if (months) {
+
+        months.innerHTML = "";
+
+    }
+
+
+    /*
+        Convert API timestamps into
+        an efficient date -> count map.
+    */
+
+    const activityMap =
+        new Map();
+
+
+    Object.entries(calendar).forEach(
+        ([timestamp, count]) => {
+
+            const key =
+                timestampToDateKey(timestamp);
+
+            activityMap.set(
+                key,
+                Number(count) || 0
+            );
+
+        }
+    );
+
+
+    /*
+        Generate 365 days.
+    */
+
+    const days =
+        createLast365Days();
+
+
+    /*
+        Make first day Sunday.
+
+        JS:
+        Sunday = 0
+        Monday = 1
+        ...
+        Saturday = 6
+    */
+
+    const firstDay =
+        days[0].getUTCDay();
+
+
+    /*
+        Empty cells before first day.
+    */
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "heat-cell heat-empty";
+
+        heatmap.appendChild(empty);
+
+    }
+
+
+    /*
+        Tooltip.
+    */
+
+    let tooltip =
+        document.querySelector(
+            ".heat-tooltip"
+        );
+
+
+    if (!tooltip) {
+
+        tooltip =
+            document.createElement("div");
+
+        tooltip.className =
+            "heat-tooltip";
+
+        document.body.appendChild(
+            tooltip
+        );
+
+    }
+
+
+    /*
+        Render every day.
+    */
+
+    days.forEach((date) => {
+
+        const key =
+            dateToKey(date);
+
+        const count =
+            activityMap.get(key) || 0;
+
+        const level =
+            getActivityLevel(count);
+
+
+        const cell =
+            document.createElement("div");
+
+
+        cell.className =
+            `heat-cell level-${level}`;
+
+
+        /*
+            Human-readable date.
+        */
+
+        const formattedDate =
+            date.toLocaleDateString(
+                "en-US",
+                {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    timeZone: "UTC"
+                }
+            );
+
+
+        const submissionWord =
+            count === 1
+                ? "submission"
+                : "submissions";
+
+
+        const tooltipText =
+            `${formattedDate} • ${count} ${submissionWord}`;
+
+
+        cell.setAttribute(
+            "title",
+            tooltipText
+        );
+
+
+        cell.setAttribute(
+            "aria-label",
+            tooltipText
+        );
+
+
+        /*
+            Tooltip events.
+        */
+
+        cell.addEventListener(
+            "mouseenter",
+            (event) => {
+
+                tooltip.textContent =
+                    tooltipText;
+
+                tooltip.classList.add(
+                    "visible"
+                );
+
+                moveHeatmapTooltip(
+                    event,
+                    tooltip
+                );
+
+            }
+        );
+
+
+        cell.addEventListener(
+            "mousemove",
+            (event) => {
+
+                moveHeatmapTooltip(
+                    event,
+                    tooltip
+                );
+
+            }
+        );
+
+
+        cell.addEventListener(
+            "mouseleave",
+            () => {
+
+                tooltip.classList.remove(
+                    "visible"
+                );
+
+            }
+        );
+
+
+        heatmap.appendChild(cell);
+
+    });
+
+
+    /*
+        Render month labels.
+    */
+
+    renderMonthLabels(
+        days,
+        firstDay,
+        months
+    );
+
+
+    /*
+        Return activity information
+        for statistics.
+    */
+
+    return {
+        days,
+        activityMap
+    };
+
+}
+
+
+/* ======================================================
+   MONTH LABELS
+====================================================== */
+
+function renderMonthLabels(
+    days,
+    firstDay,
+    months
+) {
+
+    if (!months) {
         return;
     }
 
 
-    if (totalText) {
-        totalText.textContent = "Loading activity...";
+    let lastMonth =
+        null;
+
+
+    days.forEach(
+        (date, index) => {
+
+            const month =
+                date.getUTCMonth();
+
+            const year =
+                date.getUTCFullYear();
+
+
+            const monthKey =
+                `${year}-${month}`;
+
+
+            /*
+                Only add label when month changes.
+            */
+
+            if (
+                monthKey !== lastMonth
+            ) {
+
+                const label =
+                    document.createElement("span");
+
+
+                label.className =
+                    "heatmap-month";
+
+
+                label.textContent =
+                    date.toLocaleDateString(
+                        "en-US",
+                        {
+                            month: "short",
+                            timeZone: "UTC"
+                        }
+                    );
+
+
+                /*
+                    Determine column.
+
+                    7 rows per column.
+                */
+
+                const column =
+                    Math.floor(
+                        (index + firstDay) / 7
+                    );
+
+
+                /*
+                    18px = cell width + gap
+                */
+
+                label.style.left =
+                    `${column * 18}px`;
+
+
+                months.appendChild(
+                    label
+                );
+
+
+                lastMonth =
+                    monthKey;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ======================================================
+   CALCULATE STATISTICS
+====================================================== */
+
+function calculateStatistics(
+    days,
+    activityMap
+) {
+
+    /*
+        Active days.
+    */
+
+    const activeDays =
+        days.filter(
+            (date) => {
+
+                const count =
+                    activityMap.get(
+                        dateToKey(date)
+                    ) || 0;
+
+                return count > 0;
+
+            }
+        ).length;
+
+
+    /*
+        Total submissions.
+    */
+
+    const totalSubmissions =
+        days.reduce(
+            (total, date) => {
+
+                const count =
+                    activityMap.get(
+                        dateToKey(date)
+                    ) || 0;
+
+                return total + count;
+
+            },
+            0
+        );
+
+
+    /*
+        Current streak.
+
+        Start from today and move backwards.
+    */
+
+    let currentStreak = 0;
+
+
+    for (
+        let i = days.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        const date =
+            days[i];
+
+
+        const count =
+            activityMap.get(
+                dateToKey(date)
+            ) || 0;
+
+
+        if (count > 0) {
+
+            currentStreak++;
+
+        } else {
+
+            break;
+
+        }
+
     }
 
 
-    fetch(LEETCODE_API, {
-        method: "GET",
-        cache: "no-store"
-    })
+    return {
+        activeDays,
+        totalSubmissions,
+        currentStreak
+    };
 
-    .then((response) => {
-
-        if (!response.ok) {
-            throw new Error(
-                `LeetCode API returned ${response.status}`
-            );
-        }
-
-        return response.json();
-    })
-
-    .then((data) => {
-
-        console.log("LeetCode API:", data);
+}
 
 
-        /* ==============================================
-           GET SUBMISSION CALENDAR
-        ============================================== */
+/* ======================================================
+   UPDATE LEETCODE STATISTICS
+====================================================== */
 
-        let calendar = null;
+function updateLeetCodeStats(
+    statistics
+) {
 
+    const totalText =
+        document.getElementById(
+            "leetcodeTotal"
+        );
 
-        if (typeof data.submissionCalendar === "string") {
+    const activeDays =
+        document.getElementById(
+            "leetcodeActiveDays"
+        );
 
-            calendar = JSON.parse(
-                data.submissionCalendar
-            );
+    const currentStreak =
+        document.getElementById(
+            "leetcodeCurrentStreak"
+        );
 
-        }
-
-        else if (
-            data.submissionCalendar &&
-            typeof data.submissionCalendar === "object"
-        ) {
-
-            calendar = data.submissionCalendar;
-
-        }
-
-        else if (
-            data.data &&
-            data.data.submissionCalendar
-        ) {
-
-            if (
-                typeof data.data.submissionCalendar === "string"
-            ) {
-
-                calendar = JSON.parse(
-                    data.data.submissionCalendar
-                );
-
-            } else {
-
-                calendar =
-                    data.data.submissionCalendar;
-            }
-        }
-
-
-        if (!calendar) {
-
-            throw new Error(
-                "submissionCalendar not found."
-            );
-        }
-
-
-        console.log(
-            "Parsed calendar:",
-            calendar
+    const totalSubmissions =
+        document.getElementById(
+            "leetcodeTotalSubmissions"
         );
 
 
-        /* ==============================================
-           CREATE LAST 365 DAYS
-        ============================================== */
+    if (totalText) {
 
-        const today = new Date();
+        totalText.textContent =
+            `${statistics.totalSubmissions.toLocaleString()} submissions`;
 
-        today.setHours(
-            23,
-            59,
-            59,
-            999
-        );
+    }
 
 
-        const startDate = new Date(today);
+    if (activeDays) {
 
-        startDate.setDate(
-            startDate.getDate() - 364
-        );
+        activeDays.textContent =
+            statistics.activeDays.toLocaleString();
 
+    }
 
-        /* ==============================================
-           FIND COUNT FOR DATE
-        ============================================== */
 
-        function getCountForDate(date) {
+    if (currentStreak) {
 
-            const year = date.getFullYear();
-            const month =
-                String(date.getMonth() + 1).padStart(2, "0");
-            const day =
-                String(date.getDate()).padStart(2, "0");
+        currentStreak.textContent =
+            statistics.currentStreak.toLocaleString();
 
-            const dateString =
-                `${year}-${month}-${day}`;
+    }
 
 
-            for (const timestamp in calendar) {
+    if (totalSubmissions) {
 
-                const timestampDate =
-                    new Date(
-                        Number(timestamp) * 1000
-                    );
+        totalSubmissions.textContent =
+            statistics.totalSubmissions.toLocaleString();
 
+    }
 
-                const tYear =
-                    timestampDate.getUTCFullYear();
-
-                const tMonth =
-                    String(
-                        timestampDate.getUTCMonth() + 1
-                    ).padStart(2, "0");
-
-                const tDay =
-                    String(
-                        timestampDate.getUTCDate()
-                    ).padStart(2, "0");
-
-
-                const apiDate =
-                    `${tYear}-${tMonth}-${tDay}`;
-
-
-                if (apiDate === dateString) {
-
-                    return Number(
-                        calendar[timestamp]
-                    ) || 0;
-                }
-            }
-
-
-            return 0;
-        }
-
-
-        /* ==============================================
-           CREATE ACTIVITY ARRAY
-        ============================================== */
-
-        const activity = [];
-
-        const currentDate =
-            new Date(startDate);
-
-
-        while (currentDate <= today) {
-
-            const date =
-                new Date(currentDate);
-
-
-            activity.push({
-                date: date,
-                count: getCountForDate(date)
-            });
-
-
-            currentDate.setDate(
-                currentDate.getDate() + 1
-            );
-        }
-
-
-        console.log(
-            "Activity generated:",
-            activity
-        );
-
-
-        /* ==============================================
-           CLEAR OLD HEATMAP
-        ============================================== */
-
-        heatmap.innerHTML = "";
-
-
-        if (months) {
-            months.innerHTML = "";
-        }
-
-
-        /* ==============================================
-           CREATE TOOLTIP
-        ============================================== */
-
-        let tooltip =
-            document.querySelector(".heat-tooltip");
-
-
-        if (!tooltip) {
-
-            tooltip =
-                document.createElement("div");
-
-            tooltip.className =
-                "heat-tooltip";
-
-            document.body.appendChild(
-                tooltip
-            );
-        }
-
-
-        /* ==============================================
-           ACTIVITY LEVEL
-        ============================================== */
-
-        function getLevel(count) {
-
-            if (count === 0) {
-                return 0;
-            }
-
-            if (count <= 2) {
-                return 1;
-            }
-
-            if (count <= 5) {
-                return 2;
-            }
-
-            if (count <= 9) {
-                return 3;
-            }
-
-            return 4;
-        }
-
-
-        /* ==============================================
-           START HEATMAP ON SUNDAY
-        ============================================== */
-
-        const firstDate =
-            activity[0].date;
-
-        const firstDay =
-            firstDate.getDay();
-
-
-        for (let i = 0; i < firstDay; i++) {
-
-            const emptyCell =
-                document.createElement("div");
-
-            emptyCell.className =
-                "heat-cell heat-empty";
-
-            heatmap.appendChild(
-                emptyCell
-            );
-        }
-
-
-        /* ==============================================
-           RENDER CELLS
-        ============================================== */
-
-        activity.forEach((day) => {
-
-            const cell =
-                document.createElement("div");
-
-
-            const level =
-                getLevel(day.count);
-
-
-            cell.className =
-                `heat-cell level-${level}`;
-
-
-            const formattedDate =
-                day.date.toLocaleDateString(
-                    "en-US",
-                    {
-                        weekday: "short",
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                    }
-                );
-
-
-            const submissionText =
-                day.count === 1
-                    ? "submission"
-                    : "submissions";
-
-
-            cell.setAttribute(
-                "title",
-                `${formattedDate}: ${day.count} ${submissionText}`
-            );
-
-
-            cell.setAttribute(
-                "aria-label",
-                `${formattedDate}: ${day.count} ${submissionText}`
-            );
-
-
-            cell.addEventListener(
-                "mouseenter",
-                (event) => {
-
-                    tooltip.textContent =
-                        `${formattedDate} • ${day.count} ${submissionText}`;
-
-                    tooltip.classList.add(
-                        "visible"
-                    );
-
-                    moveHeatmapTooltip(
-                        event,
-                        tooltip
-                    );
-                }
-            );
-
-
-            cell.addEventListener(
-                "mousemove",
-                (event) => {
-
-                    moveHeatmapTooltip(
-                        event,
-                        tooltip
-                    );
-                }
-            );
-
-
-            cell.addEventListener(
-                "mouseleave",
-                () => {
-
-                    tooltip.classList.remove(
-                        "visible"
-                    );
-                }
-            );
-
-
-            heatmap.appendChild(
-                cell
-            );
-
-        });
-
-
-        /* ==============================================
-           MONTH LABELS
-        ============================================== */
-
-        if (months) {
-
-            let previousMonth = -1;
-
-            activity.forEach(
-                (day, index) => {
-
-                    const month =
-                        day.date.getMonth();
-
-
-                    if (
-                        month !== previousMonth &&
-                        day.date.getDate() <= 7
-                    ) {
-
-                        const label =
-                            document.createElement("span");
-
-
-                        label.className =
-                            "heatmap-month";
-
-
-                        label.textContent =
-                            day.date.toLocaleDateString(
-                                "en-US",
-                                {
-                                    month: "short"
-                                }
-                            );
-
-
-                        const week =
-                            Math.floor(
-                                (index + firstDay) / 7
-                            );
-
-
-                        label.style.left =
-                            `${week * 18}px`;
-
-
-                        months.appendChild(
-                            label
-                        );
-
-
-                        previousMonth =
-                            month;
-                    }
-
-                }
-            );
-        }
-
-
-        /* ==============================================
-           STATISTICS
-        ============================================== */
-
-        const active =
-            activity.filter(
-                day => day.count > 0
-            ).length;
-
-
-        const submissions =
-            activity.reduce(
-                (sum, day) =>
-                    sum + day.count,
-                0
-            );
-
-
-        /* ==============================================
-           CURRENT STREAK
-        ============================================== */
-
-        let streak = 0;
-
-
-        for (
-            let i = activity.length - 1;
-            i >= 0;
-            i--
-        ) {
-
-            if (
-                activity[i].date > new Date()
-            ) {
-                continue;
-            }
-
-
-            if (
-                activity[i].count > 0
-            ) {
-
-                streak++;
-
-            } else {
-
-                break;
-            }
-        }
-
-
-        /* ==============================================
-           UPDATE STATISTICS
-        ============================================== */
-
-        if (activeDays) {
-
-            activeDays.textContent =
-                active.toLocaleString();
-        }
-
-
-        if (currentStreak) {
-
-            currentStreak.textContent =
-                streak;
-        }
-
-
-        if (totalSubmissions) {
-
-            totalSubmissions.textContent =
-                submissions.toLocaleString();
-        }
-
-
-        if (totalText) {
-
-            totalText.textContent =
-                `${submissions.toLocaleString()} submissions`;
-        }
-
-
-        if (errorBox) {
-
-            errorBox.hidden = true;
-        }
-
-
-        console.log(
-            "LeetCode heatmap loaded successfully."
-        );
-
-    })
-
-    .catch((error) => {
-
-        console.error(
-            "LeetCode heatmap error:",
-            error
-        );
-
-
-        if (totalText) {
-
-            totalText.textContent =
-                "Unable to load activity";
-        }
-
-
-        if (errorBox) {
-
-            errorBox.hidden = false;
-
-            errorBox.textContent =
-                "Unable to load LeetCode activity.";
-        }
-
-    });
 }
 
 
@@ -793,16 +1018,254 @@ function moveHeatmapTooltip(
     tooltip
 ) {
 
+    const offset = 14;
+
+
+    let left =
+        event.clientX + offset;
+
+    let top =
+        event.clientY - 40;
+
+
+    /*
+        Prevent tooltip from leaving
+        right side of screen.
+    */
+
+    const tooltipWidth =
+        tooltip.offsetWidth;
+
+
+    if (
+        left + tooltipWidth >
+        window.innerWidth - 10
+    ) {
+
+        left =
+            event.clientX -
+            tooltipWidth -
+            offset;
+
+    }
+
+
+    /*
+        Prevent tooltip from leaving
+        top of screen.
+    */
+
+    if (top < 10) {
+
+        top =
+            event.clientY + offset;
+
+    }
+
+
     tooltip.style.left =
-        `${event.clientX + 12}px`;
+        `${left}px`;
 
     tooltip.style.top =
-        `${event.clientY - 35}px`;
+        `${top}px`;
+
 }
 
 
 /* ======================================================
-   START
+   LOAD LEETCODE ACTIVITY
+====================================================== */
+
+async function loadLeetCodeActivity() {
+
+    const heatmap =
+        document.getElementById(
+            "leetcodeHeatmap"
+        );
+
+    const totalText =
+        document.getElementById(
+            "leetcodeTotal"
+        );
+
+    const errorBox =
+        document.getElementById(
+            "leetcodeError"
+        );
+
+
+    if (!heatmap) {
+
+        return;
+
+    }
+
+
+    /*
+        Loading state.
+    */
+
+    if (totalText) {
+
+        totalText.textContent =
+            "Loading activity...";
+
+    }
+
+
+    if (errorBox) {
+
+        errorBox.hidden = true;
+
+    }
+
+
+    try {
+
+        /*
+            Request API.
+        */
+
+        const response =
+            await fetch(
+                LEETCODE_API,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `API returned HTTP ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "LeetCode API response:",
+            data
+        );
+
+
+        /*
+            Extract calendar.
+        */
+
+        const calendar =
+            extractCalendar(data);
+
+
+        if (!calendar) {
+
+            throw new Error(
+                "submissionCalendar was not found in API response."
+            );
+
+        }
+
+
+        console.log(
+            "Parsed LeetCode calendar:",
+            calendar
+        );
+
+
+        /*
+            Render heatmap.
+        */
+
+        const result =
+            renderHeatmap(calendar);
+
+
+        if (!result) {
+
+            throw new Error(
+                "Unable to render heatmap."
+            );
+
+        }
+
+
+        /*
+            Calculate statistics.
+        */
+
+        const statistics =
+            calculateStatistics(
+                result.days,
+                result.activityMap
+            );
+
+
+        /*
+            Update UI.
+        */
+
+        updateLeetCodeStats(
+            statistics
+        );
+
+
+        /*
+            Hide error.
+        */
+
+        if (errorBox) {
+
+            errorBox.hidden = true;
+
+        }
+
+
+        console.log(
+            "LeetCode heatmap loaded successfully."
+        );
+
+    } catch (error) {
+
+        console.error(
+            "LeetCode heatmap error:",
+            error
+        );
+
+
+        /*
+            Show fallback UI.
+        */
+
+        if (totalText) {
+
+            totalText.textContent =
+                "Unable to load activity";
+
+        }
+
+
+        if (errorBox) {
+
+            errorBox.hidden = false;
+
+            errorBox.textContent =
+                "Unable to load LeetCode activity. Please try again later.";
+
+        }
+
+    }
+
+}
+
+
+/* ======================================================
+   START LEETCODE
 ====================================================== */
 
 if (
@@ -817,4 +1280,5 @@ if (
 } else {
 
     loadLeetCodeActivity();
+
 }
