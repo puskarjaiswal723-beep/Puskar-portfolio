@@ -2,6 +2,10 @@
    LEETCODE CONFIGURATION
 ====================================================== */
 
+/* ======================================================
+   LEETCODE CONFIGURATION
+====================================================== */
+
 const LEETCODE_USERNAME = "Puskar_jaiswal_723";
 
 const LEETCODE_API =
@@ -1077,6 +1081,10 @@ function moveHeatmapTooltip(
    LOAD LEETCODE SOLVED PROGRESS
 ====================================================== */
 
+/* ======================================================
+   LOAD LEETCODE SOLVED PROGRESS
+====================================================== */
+
 async function loadLeetCodeSolvedProgress() {
 
     const solvedCount =
@@ -1088,25 +1096,39 @@ async function loadLeetCodeSolvedProgress() {
     const progressCircle =
         document.getElementById("leetcodeProgressCircle");
 
+    const progressPercentage =
+        document.getElementById("leetcodeProgressPercentage");
+
 
     if (
         !solvedCount ||
         !totalQuestions ||
         !progressCircle
     ) {
+        console.error(
+            "LeetCode solved progress elements not found."
+        );
+
         return;
     }
 
 
     try {
 
-        const response = await fetch(
-            LEETCODE_SOLVED_API,
-            {
-                method: "GET",
-                cache: "no-store"
-            }
+        console.log(
+            "Fetching solved questions from:",
+            LEETCODE_SOLVED_API
         );
+
+
+        const response =
+            await fetch(
+                LEETCODE_SOLVED_API,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
 
 
         if (!response.ok) {
@@ -1118,7 +1140,9 @@ async function loadLeetCodeSolvedProgress() {
         }
 
 
-        const data = await response.json();
+        const data =
+            await response.json();
+
 
         console.log(
             "LeetCode solved response:",
@@ -1127,41 +1151,39 @@ async function loadLeetCodeSolvedProgress() {
 
 
         /*
-            Alfa LeetCode API /solved endpoint
-            returns the user's solved-question
-            statistics.
+            The Alfa LeetCode API normally
+            returns solvedProblem.
         */
 
         const solved =
             Number(
-                data.solvedProblem ||
-                data.totalSolved ||
-                data.solved ||
+                data.solvedProblem ??
+                data.totalSolved ??
+                data.solved ??
                 0
             );
 
 
         /*
-            Total number of available LeetCode
-            questions.
+            Total available questions.
 
-            Change this number whenever you want
-            to update the denominator.
+            You can update this number later
+            if LeetCode's total changes.
         */
 
         const total = 3000;
 
 
-        /*
-            Display solved questions.
-        */
+        if (
+            !Number.isFinite(solved) ||
+            solved < 0
+        ) {
 
-        solvedCount.textContent =
-            solved.toLocaleString();
+            throw new Error(
+                "Invalid solved question count returned by API."
+            );
 
-
-        totalQuestions.textContent =
-            total.toLocaleString();
+        }
 
 
         /*
@@ -1176,8 +1198,13 @@ async function loadLeetCodeSolvedProgress() {
 
 
         /*
-            Circle circumference:
-            2 × π × 50
+            Circle circumference.
+
+            SVG circle:
+            r = 50
+
+            circumference =
+            2 × π × r
         */
 
         const circumference =
@@ -1190,17 +1217,48 @@ async function loadLeetCodeSolvedProgress() {
 
 
         /*
-            Animate progress circle.
+            Update numbers.
+        */
+
+        solvedCount.textContent =
+            solved.toLocaleString();
+
+
+        totalQuestions.textContent =
+            total.toLocaleString();
+
+
+        /*
+            Update progress circle.
         */
 
         progressCircle.style.strokeDasharray =
             circumference;
 
+
         progressCircle.style.strokeDashoffset =
             offset;
 
 
-    } catch (error) {
+        /*
+            If percentage element exists,
+            display percentage.
+        */
+
+        if (progressPercentage) {
+
+            progressPercentage.textContent =
+                `${percentage.toFixed(1)}%`;
+
+        }
+
+
+        console.log(
+            `LeetCode solved progress loaded: ${solved}/${total} (${percentage.toFixed(1)}%)`
+        );
+
+    }
+    catch (error) {
 
         console.error(
             "LeetCode solved progress error:",
@@ -1208,17 +1266,32 @@ async function loadLeetCodeSolvedProgress() {
         );
 
 
-        solvedCount.textContent = "--";
+        solvedCount.textContent =
+            "--";
 
-        totalQuestions.textContent = "--";
+
+        totalQuestions.textContent =
+            "--";
+
+
+        progressCircle.style.strokeDasharray =
+            2 * Math.PI * 50;
+
 
         progressCircle.style.strokeDashoffset =
             2 * Math.PI * 50;
 
+
+        if (progressPercentage) {
+
+            progressPercentage.textContent =
+                "--";
+
+        }
+
     }
 
-}
-async function loadLeetCodeActivity() {
+}async function loadLeetCodeActivity() {
 
     const heatmap =
         document.getElementById(
