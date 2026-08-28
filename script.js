@@ -5,9 +5,7 @@
 const LEETCODE_USERNAME = "Puskar_jaiswal_723";
 
 const LEETCODE_API =
-    `https://leetcode-api-pied.vercel.app/user/${LEETCODE_USERNAME}/calendar`;
-
-
+    `https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/calendar`;
 /* ======================================================
    CURSOR GLOW
 ====================================================== */
@@ -237,34 +235,22 @@ document.addEventListener(
 async function loadLeetCodeActivity() {
 
     const heatmap =
-        document.getElementById(
-            "leetcodeHeatmap"
-        );
+        document.getElementById("leetcodeHeatmap");
 
     const totalText =
-        document.getElementById(
-            "leetcodeTotal"
-        );
+        document.getElementById("leetcodeTotal");
 
     const activeDays =
-        document.getElementById(
-            "leetcodeActiveDays"
-        );
+        document.getElementById("leetcodeActiveDays");
 
     const currentStreak =
-        document.getElementById(
-            "leetcodeCurrentStreak"
-        );
+        document.getElementById("leetcodeCurrentStreak");
 
     const totalSubmissions =
-        document.getElementById(
-            "leetcodeTotalSubmissions"
-        );
+        document.getElementById("leetcodeTotalSubmissions");
 
     const errorBox =
-        document.getElementById(
-            "leetcodeError"
-        );
+        document.getElementById("leetcodeError");
 
 
     if (!heatmap) {
@@ -275,44 +261,36 @@ async function loadLeetCodeActivity() {
     try {
 
         if (totalText) {
-            totalText.textContent =
-                "Loading activity...";
+            totalText.textContent = "Loading activity...";
         }
 
 
-        const response =
-            await fetch(
-                LEETCODE_API,
-                {
-                    method: "GET",
-                    headers: {
-                        "Accept":
-                            "application/json"
-                    }
-                }
-            );
-
+        const response = await fetch(LEETCODE_API);
 
         if (!response.ok) {
-
             throw new Error(
                 `API request failed: ${response.status}`
             );
         }
 
 
-        const data =
-            await response.json();
+        const data = await response.json();
+
+        console.log("LeetCode API response:", data);
 
 
-        console.log(
-            "LeetCode API response:",
-            data
-        );
-
+        /*
+         * Alfa API returns calendar data.
+         *
+         * We support both possible structures:
+         * data.calendar
+         * data itself
+         */
 
         const calendar =
-            extractCalendar(data);
+            data.calendar ||
+            data.data ||
+            data;
 
 
         if (
@@ -326,26 +304,67 @@ async function loadLeetCodeActivity() {
         }
 
 
-        const activity =
-            convertCalendar(calendar);
+        /*
+         * Convert calendar object into
+         * our heatmap format.
+         */
+
+        const activity = [];
+
+
+        for (const [timestamp, count] of Object.entries(calendar)) {
+
+            const date =
+                new Date(
+                    Number(timestamp) * 1000
+                );
+
+
+            activity.push({
+                date: date,
+                count: Number(count) || 0
+            });
+
+        }
+
+
+        /*
+         * Sort oldest → newest
+         */
+
+        activity.sort(
+            (a, b) =>
+                a.date - b.date
+        );
 
 
         if (!activity.length) {
-
             throw new Error(
                 "No activity data found."
             );
         }
 
 
+        /*
+         * Render heatmap
+         */
+
         renderHeatmap(activity);
 
 
+        /*
+         * Calculate active days
+         */
+
         const active =
             activity.filter(
-                (day) => day.count > 0
+                day => day.count > 0
             ).length;
 
+
+        /*
+         * Calculate total submissions
+         */
 
         const submissions =
             activity.reduce(
@@ -355,33 +374,21 @@ async function loadLeetCodeActivity() {
             );
 
 
-        const calculatedStreak =
+        /*
+         * Calculate current streak
+         */
+
+        const streak =
             calculateCurrentStreak(
                 activity
             );
 
 
-        const apiStreak =
-            Number(
-                data.streak ??
-                data.currentStreak ??
-                data.data?.streak ??
-                data.data?.currentStreak
-            );
-
-
-        const streak =
-            Number.isFinite(apiStreak)
-                ? apiStreak
-                : calculatedStreak;
-
-
         if (activeDays) {
 
             activeDays.textContent =
-                data.totalActiveDays ??
-                data.data?.totalActiveDays ??
-                active;
+                active.toLocaleString();
+
         }
 
 
@@ -389,6 +396,7 @@ async function loadLeetCodeActivity() {
 
             currentStreak.textContent =
                 streak;
+
         }
 
 
@@ -396,6 +404,7 @@ async function loadLeetCodeActivity() {
 
             totalSubmissions.textContent =
                 submissions.toLocaleString();
+
         }
 
 
@@ -403,14 +412,18 @@ async function loadLeetCodeActivity() {
 
             totalText.textContent =
                 `${submissions.toLocaleString()} submissions`;
+
         }
 
 
         if (errorBox) {
+
             errorBox.hidden = true;
+
         }
 
     }
+
     catch (error) {
 
         console.error(
@@ -423,6 +436,7 @@ async function loadLeetCodeActivity() {
 
             totalText.textContent =
                 "Unable to load activity";
+
         }
 
 
@@ -431,15 +445,13 @@ async function loadLeetCodeActivity() {
             errorBox.hidden = false;
 
             errorBox.textContent =
-                "Unable to load live LeetCode activity right now. " +
-                "The external API may be unavailable or blocking the request.";
+                "Unable to load LeetCode activity.";
+
         }
 
     }
 
 }
-
-
 /* ======================================================
    EXTRACT CALENDAR
 ====================================================== */
