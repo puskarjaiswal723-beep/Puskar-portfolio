@@ -34,7 +34,14 @@ html {
     scroll-behavior: smooth;
 }
 
-
+.leetcode-heatmap-image {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+}
 body {
 
     margin: 0;
