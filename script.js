@@ -1075,7 +1075,152 @@ function moveHeatmapTooltip(
 /* ======================================================
    LOAD LEETCODE ACTIVITY
 ====================================================== */
+/* ======================================================
+   LOAD LEETCODE SOLVED PROGRESS
+====================================================== */
 
+async function loadLeetCodeSolvedProgress() {
+
+    const solvedCount =
+        document.getElementById(
+            "leetcodeSolvedCount"
+        );
+
+    const totalQuestions =
+        document.getElementById(
+            "leetcodeTotalQuestions"
+        );
+
+    const progressCircle =
+        document.getElementById(
+            "leetcodeProgressCircle"
+        );
+
+
+    if (
+        !solvedCount ||
+        !totalQuestions ||
+        !progressCircle
+    ) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                LEETCODE_SOLVED_API,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Solved API returned HTTP ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "LeetCode solved response:",
+            data
+        );
+
+
+        /*
+           The API normally returns
+           total solved questions and
+           difficulty-wise solved counts.
+        */
+
+        const solved =
+            Number(
+                data.solvedProblem ||
+                data.solved ||
+                data.totalSolved ||
+                data.totalSolvedQuestions ||
+                0
+            );
+
+
+        /*
+           Current approximate total number
+           of LeetCode problems.
+
+           This can be updated later without
+           touching the heatmap.
+        */
+
+        const total =
+            3000;
+
+
+        solvedCount.textContent =
+            solved.toLocaleString();
+
+
+        totalQuestions.textContent =
+            total.toLocaleString();
+
+
+        /*
+           Calculate progress percentage.
+        */
+
+        const percentage =
+            Math.min(
+                (solved / total) * 100,
+                100
+            );
+
+
+        /*
+           Circle circumference:
+           2 × π × 50 = 314.16
+        */
+
+        const circumference =
+            314.16;
+
+
+        const offset =
+            circumference -
+            (
+                percentage / 100
+            ) * circumference;
+
+
+        progressCircle.style.strokeDashoffset =
+            offset;
+
+
+    } catch (error) {
+
+        console.error(
+            "LeetCode solved progress error:",
+            error
+        );
+
+        solvedCount.textContent = "--";
+
+        totalQuestions.textContent = "--";
+
+        progressCircle.style.strokeDashoffset =
+            314.16;
+
+    }
+
+}
 async function loadLeetCodeActivity() {
 
     const heatmap =
@@ -1274,11 +1419,19 @@ if (
 
     document.addEventListener(
         "DOMContentLoaded",
-        loadLeetCodeActivity
+        () => {
+
+            loadLeetCodeActivity();
+
+            loadLeetCodeSolvedProgress();
+
+        }
     );
 
 } else {
 
     loadLeetCodeActivity();
+
+    loadLeetCodeSolvedProgress();
 
 }
