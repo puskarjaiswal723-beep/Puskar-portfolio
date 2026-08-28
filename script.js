@@ -195,15 +195,54 @@ document.addEventListener("keydown", (event) => {
    EXTRACT LEETCODE CALENDAR
 ====================================================== */
 
+
+/* ======================================================
+   EXTRACT LEETCODE CALENDAR
+====================================================== */
+
 function extractCalendar(data) {
 
-    if (!data || typeof data !== "object") {
+    if (!data) {
         return null;
     }
 
 
     /*
-     * Possible API structures
+     * The Alfa API returns submissionCalendar
+     * as a JSON STRING.
+     *
+     * Example:
+     *
+     * "submissionCalendar":
+     * "{\"1770076800\":9,\"1770422400\":4}"
+     *
+     * Therefore we must JSON.parse() it.
+     */
+
+    if (
+        typeof data.submissionCalendar === "string"
+    ) {
+
+        try {
+
+            return JSON.parse(
+                data.submissionCalendar
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Failed to parse submissionCalendar:",
+                error
+            );
+
+            return null;
+        }
+    }
+
+
+    /*
+     * In case API returns it as an object.
      */
 
     if (
@@ -212,6 +251,33 @@ function extractCalendar(data) {
     ) {
 
         return data.submissionCalendar;
+    }
+
+
+    /*
+     * data.data.submissionCalendar
+     */
+
+    if (
+        data.data &&
+        typeof data.data.submissionCalendar === "string"
+    ) {
+
+        try {
+
+            return JSON.parse(
+                data.data.submissionCalendar
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Failed to parse nested submissionCalendar:",
+                error
+            );
+
+            return null;
+        }
     }
 
 
@@ -225,47 +291,33 @@ function extractCalendar(data) {
     }
 
 
-    if (
-        data.userCalendar &&
-        data.userCalendar.submissionCalendar &&
-        typeof data.userCalendar.submissionCalendar === "object"
-    ) {
-
-        return data.userCalendar.submissionCalendar;
-    }
-
-
-    if (
-        data.data &&
-        data.data.userCalendar &&
-        data.data.userCalendar.submissionCalendar &&
-        typeof data.data.userCalendar.submissionCalendar === "object"
-    ) {
-
-        return data.data.userCalendar.submissionCalendar;
-    }
-
-
     /*
-     * Some versions of the API may return
-     * the calendar object directly.
+     * Direct calendar object fallback.
      */
 
-    const values = Object.values(data);
+    if (
+        typeof data === "object"
+    ) {
 
-    const hasNumericValues =
-        values.length > 0 &&
-        values.some(
-            value => typeof value === "number"
-        );
+        const values =
+            Object.values(data);
 
-    if (hasNumericValues) {
-        return data;
+        if (
+            values.length > 0 &&
+            values.some(
+                value =>
+                    typeof value === "number"
+            )
+        ) {
+
+            return data;
+        }
     }
 
 
     return null;
 }
+
 
 
 /* ======================================================
